@@ -17,11 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('address_id');
-            $table->double('total_price', 10, 2);
-            $table->double('discount', 10, 2);
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('CASCADE');
+            $table->double('total_price');
+            $table->double('discount');
+            $table->timestamps();
         });
     }
 

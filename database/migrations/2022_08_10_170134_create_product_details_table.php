@@ -19,7 +19,7 @@ class CreateProductDetailsTable extends Migration
             $table->unsignedBigInteger('size_id');
             $table->unsignedBigInteger('color_id');
             $table->integer('stock');
-            $table->string('image', 150);
+            $table->string('image');
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('CASCADE');

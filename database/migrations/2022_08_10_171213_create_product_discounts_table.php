@@ -16,12 +16,12 @@ class CreateProductDiscountsTable extends Migration
         Schema::create('product_discounts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->double('precentage', 3, 2);
-            $table->double('amount', 8, 2);
-            $table->boolean('status');
-            $table->timestamp('expired');
-            $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
+            $table->unsignedTinyInteger('precentage');
+            $table->double('amount');
+            $table->boolean('status');
+            $table->date('expired');
+            $table->timestamps();
         });
     }
 

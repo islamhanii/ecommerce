@@ -15,8 +15,8 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('image', 150);
-            $table->unsignedInteger('sort');
+            $table->string('image');
+            $table->unsignedSmallInteger('sort');
             $table->timestamps();
         });
     }

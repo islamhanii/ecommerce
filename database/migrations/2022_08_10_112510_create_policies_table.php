@@ -16,10 +16,10 @@ class CreatePoliciesTable extends Migration
         Schema::create('policies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('policy_category_id');
-            $table->text('title');
+            $table->foreign('policy_category_id')->references('id')->on('policy_categories')->onDelete('CASCADE');
+            $table->string('title');
             $table->text('description');
             $table->timestamps();
-            $table->foreign('policy_category_id')->references('id')->on('policy_categories')->onDelete('CASCADE');
         });
     }
 

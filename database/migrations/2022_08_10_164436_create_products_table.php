@@ -15,12 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sub_category_id')->nullable();
+            $table->unsignedBigInteger('sub_category_id');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('CASCADE');
             $table->string('description');
-            $table->double('price', 8, 2);
+            $table->double('price');
             $table->string('main_image');
             $table->timestamps();
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('SET NULL');
         });
     }
 
