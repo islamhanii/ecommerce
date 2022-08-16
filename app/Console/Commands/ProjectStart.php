@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class ProductStart extends Command
+class ProjectStart extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'product:start';
+    protected $signature = 'project:start';
 
     /**
      * The console command description.
@@ -43,8 +43,8 @@ class ProductStart extends Command
      */
     public function handle()
     {
-        Artisan::call('migrate:fresh');
-        $this->info('Database was created successfully.');
+        //Artisan::call('migrate:fresh');
+        //$this->info('Database was created successfully.');
 
         $name = $this->enterData('name', 'required|string|min:3|max:255');
 
@@ -57,7 +57,9 @@ class ProductStart extends Command
             $validator = Validator::make(['password' => $password], [
                 'password' => 'required|min:8|max:32'
             ]);
-            if(!$validator->fails()) break;
+            if(!$validator->fails()) {
+                break;
+            }
 
             $error = $validator->errors()->all()[0];
             $this->info($error);
@@ -88,7 +90,9 @@ class ProductStart extends Command
             $validator = Validator::make([$type => $data], [
                 $type => $validations
             ]);
-            if(!$validator->fails()) break;
+            if(!$validator->fails()) {
+                break;
+            }
 
             $error = $validator->errors()->all()[0];
             $this->info($error);
