@@ -16,4 +16,8 @@ class AuthController extends Controller
     public function index() {
         return $this->authInterface->index();
     }
+
+    public function login(Request $request){
+        return $this->authInterface->login($request);
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Interfaces;
 
-interface AuthInterface {
+interface HomeInterface {
     public function index();
-    public function login($request);
 }
