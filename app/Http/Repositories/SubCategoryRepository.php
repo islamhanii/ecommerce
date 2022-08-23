@@ -41,7 +41,6 @@ class SubCategoryRepository implements SubCategoryInterface {
 
     public function store($request) {
         $path = $this->uploadImage($request, 'sub-categories');
-        dd($path);
         $this->subCategoryModel->create([
             'name' => $request->name,
             'image' => $path,
@@ -55,9 +54,9 @@ class SubCategoryRepository implements SubCategoryInterface {
     /*-------------------------------------Update Category-----------------------------------*/
     
     public function edit($subCategoryId) {
-        $edit = $this->getSubCategoryById($subCategoryId);
+        $subCategory = $this->getSubCategoryById($subCategoryId);
         $categories = $this->getCategories();
-        return view('admin.sub-categories.edit', compact('edit', 'categories'));
+        return view('admin.sub-categories.edit', compact('subCategory', 'categories'));
     }
 
     public function update($request) {
@@ -78,7 +77,7 @@ class SubCategoryRepository implements SubCategoryInterface {
     /*-------------------------------------Delete Category-----------------------------------*/
 
     public function destroy($request) {
-        $subCategory = $this->getSubCategoryById($request->category_id);
+        $subCategory = $this->getSubCategoryById($request->sub_category_id);
         $subCategory->delete();
         $this->deleteImage($subCategory->image);
 
