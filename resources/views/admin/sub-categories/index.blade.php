@@ -63,7 +63,7 @@
                                     @php
                                     $i = 1;
                                     @endphp
-                                    @foreach($subcategories as $item)
+                                    @foreach($subCategories as $item)
                                     <tr>
                                         <td class="checkbox-column"> {{$i++}} </td>
                                         <td>{{$item->name}}</td>
