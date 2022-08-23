@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Interfaces\AuthInterface;
-use Illuminate\Http\Request;
+use App\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
 {
@@ -17,7 +17,11 @@ class AuthController extends Controller
         return $this->authInterface->index();
     }
 
-    public function login(Request $request){
+    public function login(AuthRequest $request){
         return $this->authInterface->login($request);
+    }
+
+    public function logout() {
+        return $this->authInterface->logout();
     }
 }
