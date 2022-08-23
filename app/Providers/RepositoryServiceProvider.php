@@ -19,8 +19,13 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            \App\Http\Interfaces\HomeInterface::class,
-            \App\Http\Repositories\HomeRepository::class
+            \App\Http\Interfaces\EndUser\HomeInterface::class,
+            \App\Http\Repositories\EndUser\HomeRepository::class
+        );
+
+        $this->app->bind(
+            \App\Http\Interfaces\CategoryInterface::class,
+            \App\Http\Repositories\CategoryRepository::class
         );
     }
 

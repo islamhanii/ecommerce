@@ -15,11 +15,20 @@
                 <form method="post" action="{{ route('categories.update', [$edit->id]) }}" method="post">
                   @csrf
                       @method('PUT')
-                      <input type="hidden" name="cat_id" value="{{$edit->id}}">
-                      @include('admin.categories.incs._fields', [
-                          'data' => collect($edit),
-                          'action' => 'edit'
-                      ])
+                      <input type="hidden" name="category_id" value="{{$edit->id}}">
+                      <div class="form-body">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label class="col-md-2 control-label"><span class="required"></span> </label>
+                            <div class="col-md-6">
+                                <input type="text" name="name" value="{{$edit->name}}" class="form-control" placeholder="Name" required>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong class="help-block">{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
 
                     <input type="submit" value="Update" class="btn btn-primary ml-3 mt-3">
                     <a href="{{ route('categories.index') }}" class="btn  btn-danger ml-3 mt-3">Cancel</a>
