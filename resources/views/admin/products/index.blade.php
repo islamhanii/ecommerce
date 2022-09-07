@@ -71,7 +71,7 @@
                                             <td class="text-center">{!! mb_strimwidth($product->description,0,80,',...') !!}</td>
                                             <td class="text-center">{{$product->price}}</td>
                                             <td class="text-center">
-                                                <span><img src="{{asset('images/products/'.$product->main_image)}}" class="rounded-circle profile-img" alt="avatar"></span>
+                                                <span><img src="{{asset('images/'.$product->main_image)}}" class="rounded-circle profile-img" alt="avatar"></span>
                                             </td>
                                             <td class="text-center">{{$product->sub_category->name}}</td>
                                             <td class="text-center">

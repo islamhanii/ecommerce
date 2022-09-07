@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Http\Traits;
 
-trait CategoryTrait
-{
+trait CategoryTrait {
     private function getCategories()
     {
         return $this->categoryModel::get();

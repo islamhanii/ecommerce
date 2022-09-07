@@ -9,7 +9,7 @@ use App\Http\Controllers\EndUser\WishListController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\ColorsController;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EndUser\ProductsController as EndUserProductsController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SizeUnitsController;
@@ -50,17 +50,17 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::put('/subcategories/update',[SubCategoryController::class,'update'])->name('sub_categories.update');
     Route::delete('/subcategories/delete',[SubCategoryController::class,'delete'])->name('sub_categories.delete');
     #------------------------------------Route Products Admin---------------------------------------#
-    Route::get('/products',[ProductsController::class,'index'])->name('products.index');
-    Route::get('/products/create',[ProductsController::class,'create'])->name('products.create');
-    Route::post('/products/store',[ProductsController::class,'store'])->name('products.store');
-    Route::get('/products/edit/{id}',[ProductsController::class,'edit'])->name('products.edit');
-    Route::put('/products/update',[ProductsController::class,'update'])->name('products.update');
-    Route::delete('/products/delete',[ProductsController::class,'delete'])->name('products.delete');
-    Route::get('/products/upload',[ProductsController::class,'uploadPage'])->name('products.uploadPage');
-    Route::post('/products/upload',[ProductsController::class,'upload'])->name('products.upload');
-    Route::get('/products/update',[ProductsController::class,'updateUploadPage'])->name('products.updatePage');
-    Route::post('/products/update',[ProductsController::class,'uploadUpdate'])->name('products.updateUploadProducts');
-    Route::post('/products/images/scan',[ProductsController::class,'scanImages'])->name('products.scanImages');
+    Route::get('/products',[ProductController::class,'index'])->name('products.index');
+    Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
+    Route::post('/products/store',[ProductController::class,'store'])->name('products.store');
+    Route::get('/products/edit/{id}',[ProductController::class,'edit'])->name('products.edit');
+    Route::put('/products/update',[ProductController::class,'update'])->name('products.update');
+    Route::delete('/products/delete',[ProductController::class,'delete'])->name('products.delete');
+    Route::get('/products/upload',[ProductController::class,'uploadPage'])->name('products.uploadPage');
+    Route::post('/products/upload',[ProductController::class,'upload'])->name('products.upload');
+    Route::get('/products/update',[ProductController::class,'updateUploadPage'])->name('products.updatePage');
+    Route::post('/products/update',[ProductController::class,'uploadUpdate'])->name('products.updateUploadProducts');
+    Route::post('/products/images/scan',[ProductController::class,'scanImages'])->name('products.scanImages');
     #------------------------------------Route Product Details Admin---------------------------------------#
     Route::get('/products/details/index',[ProductDetailsController::class,'index'])->name('product.details.index');
     Route::get('/products/details/create',[ProductDetailsController::class,'create'])->name('product.details.create');

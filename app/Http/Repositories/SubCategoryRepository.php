@@ -10,9 +10,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 
 class SubCategoryRepository implements SubCategoryInterface {
-    use SubCategoryTrait;
-    use CategoryTrait;
-    use ImageStorage;
+    use SubCategoryTrait, CategoryTrait, ImageStorage;
 
     private $categoryModel;
     private $subCategoryModel;
