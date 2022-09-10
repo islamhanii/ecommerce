@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Products | Create
+    Products | Edit
 @endsection
 
 @section('css')
@@ -21,7 +21,7 @@
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <div class="form-group mb-4">
                         <label class="control-label">Name EN:</label>
-                        <input type="text" name="name_en" class="form-control @error('name_en') is-invalid fparsley-error parsley-error @enderror" placeholder="English Name" value="{{$product->name}}">
+                        <input type="text" name="name_en" class="form-control @error('name_en') is-invalid fparsley-error parsley-error @enderror" placeholder="English Name" value="{{$product->name_en}}">
                         @error('name_en')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label class="control-label">Name AR:</label>
-                        <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid fparsley-error parsley-error @enderror" placeholder="Arabic Name" value="{{$product->name}}">
+                        <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid fparsley-error parsley-error @enderror" placeholder="Arabic Name" value="{{$product->name_ar}}">
                         @error('name_ar')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
@@ -68,7 +68,7 @@
                     </div>
                     @if ($product->main_image)
                         <div class="custom-file-container__image-preview">
-                         <img src="{{asset('images/products/'.$product->main_image)}}" class="rounded-circle profile-img text-center" width="650px" height="250px" alt="avatar">
+                         <img src="{{asset('images/'.$product->main_image)}}" class="rounded-circle profile-img text-center" width="650px" height="250px" alt="avatar">
                         </div>
                     @endif
                     <div class="custom-file-container" data-upload-id="myFirstImage">
@@ -102,7 +102,7 @@
                         @enderror
                     </div>
 
-                    <input type="submit" value="Create" class="btn btn-primary ml-3 mt-3">
+                    <input type="submit" value="Edit" class="btn btn-primary ml-3 mt-3">
                 </form>
             </div>
         </div>

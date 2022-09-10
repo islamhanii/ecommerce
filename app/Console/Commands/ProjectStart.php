@@ -43,8 +43,10 @@ class ProjectStart extends Command
      */
     public function handle()
     {
-        //Artisan::call('migrate:fresh');
-        //$this->info('Database was created successfully.');
+        Artisan::call('migrate:fresh');
+        $this->info('Database was created successfully.');
+        Artisan::call('db:seed --class="LanguageSeeder"');
+        $this->info('Languages was seeded successfully.');
 
         $name = $this->enterData('name', 'required|string|min:3|max:255');
 
