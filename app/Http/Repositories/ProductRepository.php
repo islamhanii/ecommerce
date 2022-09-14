@@ -7,10 +7,12 @@ use App\Http\Traits\ImageStorage;
 use App\Http\Traits\LanguageTrait;
 use App\Http\Traits\ProductTrait;
 use App\Http\Traits\SubCategoryTrait;
+use App\Imports\ProductImport;
 use App\Models\Language;
 use App\Models\Product;
 use App\Models\ProductName;
 use App\Models\SubCategory;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductRepository implements ProductInterface {
     use ImageStorage, ProductTrait, LanguageTrait, SubCategoryTrait;
@@ -123,5 +125,15 @@ class ProductRepository implements ProductInterface {
 
         session()->flash('success', 'Product was deleted successfully.');
         return redirect(route('products.index'));
+    }
+
+    /*-------------------------------------Update Product-----------------------------------*/
+
+    public function uploadPage() {
+        return view('admin.products.upload');
+    }
+
+    public function upload($request) {
+        Excel::import(new ProductImport, $request->file('file'));
     }
 }

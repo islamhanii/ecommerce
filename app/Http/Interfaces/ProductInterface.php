@@ -9,4 +9,6 @@ interface ProductInterface {
     public function edit($productId);
     public function update($request);
     public function destroy($request);
+    public function uploadPage();
+    public function upload($request);
 }

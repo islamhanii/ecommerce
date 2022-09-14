@@ -6,6 +6,7 @@ use App\Http\Interfaces\ProductInterface;
 use App\Http\Requests\Products\AddProductRequest;
 use App\Http\Requests\Products\DeleteProductRequest;
 use App\Http\Requests\Products\UpdateProductRequest;
+use App\Http\Requests\Products\UploadFileProductRequest;
 
 class ProductController extends Controller
 {
@@ -37,5 +38,13 @@ class ProductController extends Controller
 
     public function delete(DeleteProductRequest $request) {
         return $this->productInterface->destroy($request);
+    }
+
+    public function uploadPage() {
+        return $this->productInterface->uploadPage();
+    }
+
+    public function upload(UploadFileProductRequest $request) {
+        return $this->productInterface->upload($request);
     }
 }
