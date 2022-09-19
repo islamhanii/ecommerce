@@ -38,6 +38,16 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-4">
+                        <label class="control-label">Product Code:</label>
+                        <input type="text" name="code" class="form-control @error('code') is-invalid fparsley-error parsley-error @enderror" placeholder="Product Code" value="{{$product->code}}">
+                        @error('code')
+                        <span class="invalid-feedback text-danger" role="alert">
+                          <p>{{ $message }}</p>
+                        </span>
+                        @enderror
+                    </div>
+
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
@@ -68,7 +78,7 @@
                     </div>
                     @if ($product->main_image)
                         <div class="custom-file-container__image-preview">
-                         <img src="{{asset('images/'.$product->main_image)}}" class="rounded-circle profile-img text-center" width="650px" height="250px" alt="avatar">
+                         <img src="{{asset('uploads/'.$product->main_image)}}" class="rounded-circle profile-img text-center" width="650px" height="250px" alt="avatar">
                         </div>
                     @endif
                     <div class="custom-file-container" data-upload-id="myFirstImage">
@@ -87,7 +97,7 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <select class="form-control  basic @error('select') is-invalid fparsley-error parsley-error @enderror" name="select">
+                        <select class="form-control  basic @error('select') is-invalid fparsley-error parsley-error @enderror" name="sub_category_id">
                             <option>Choose Category</option>
                             @isset($subcategories)
                                 @foreach($subcategories as $item)

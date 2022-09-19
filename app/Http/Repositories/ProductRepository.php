@@ -8,10 +8,12 @@ use App\Http\Traits\LanguageTrait;
 use App\Http\Traits\ProductTrait;
 use App\Http\Traits\SubCategoryTrait;
 use App\Imports\ProductImport;
+use App\Imports\UpdateProductImport;
 use App\Models\Language;
 use App\Models\Product;
 use App\Models\ProductName;
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductRepository implements ProductInterface {
@@ -50,10 +52,11 @@ class ProductRepository implements ProductInterface {
         $path = $this->uploadImage($request, 'products');
 
         $product = $this->productModel->create([
+            "code" => $request->code,
             'description' => $request->description,
             'price' => $request->price,
             'main_image' => $path,
-            'sub_category_id' => $request->select
+            'sub_category_id' => $request->sub_category_id,
         ]);
 
         $languages = $this->getLanguages();
@@ -93,14 +96,15 @@ class ProductRepository implements ProductInterface {
     public function update($request) {
         $product = $this->getProductById($request->product_id);
         $path = $this->uploadImage($request, 'products', $product, 'main_image');
-
+        
         $product->update([
+            'code' => $request->code,
             'description' => $request->description,
-            'price' => $request->price,
             'main_image' => $path,
-            'sub_category_id' => $request->select
+            'price' => $request->price,
+            'sub_category_id' => $request->sub_category_id
         ]);
-
+        
         $languages = $this->getLanguages();
 
         foreach($languages as $language) {
@@ -127,7 +131,7 @@ class ProductRepository implements ProductInterface {
         return redirect(route('products.index'));
     }
 
-    /*-------------------------------------Update Product-----------------------------------*/
+    /*-------------------------------------Upload Product-----------------------------------*/
 
     public function uploadPage() {
         return view('admin.products.upload');
@@ -135,5 +139,60 @@ class ProductRepository implements ProductInterface {
 
     public function upload($request) {
         Excel::import(new ProductImport, $request->file('file'));
+
+        session()->flash('success', 'Products was uploaded successfully.');
+        return redirect(route('products.index'));
+    }
+
+    /*-------------------------------------Upload Update Product-----------------------------------*/
+
+    public function updateUploadPage() {
+        return view('admin.products.update-upload');
+    }
+
+    public function uploadUpdate($request) {
+        Excel::import(new UpdateProductImport, $request->file('file'));
+
+        session()->flash('success', 'Products was uploaded successfully.');
+        return redirect(route('products.index'));
+    }
+
+    /*-------------------------------------Upload Update Product-----------------------------------*/
+
+    public function scanImages() {
+        $mimes = ['png', 'jpg', 'jpeg', 'webp'];
+        $files = Storage::disk('local')->files('public/images');
+
+        foreach($files as $file) {
+            $fullPath = Storage::disk('local')->path($file);
+            $fileContent = explode('/', $file);
+            $fileName = explode('.', $fileContent[2]);
+            $code = $fileName[0];
+            $mime = strtolower($fileName[1]);
+
+            if(in_array($mime, $mimes)) {
+                if($product = $this->getProductByCode($code)) {
+                    if($product->main_image)    $this->deleteImage($product->main_image);
+                    $path = Storage::putFile('products', $fullPath);
+                    $product->update([
+                        'code' => $product->code,
+                        'description' => $product->description,
+                        'price' => $product->price,
+                        'main_image' => $path
+                    ]);
+                }
+                else {
+                    session()->flash('error', "No products matches this code($code). All images before was scanned successfully");
+                    return redirect(route('products.updatePage'));
+                }
+            }
+            else {
+                session()->flash('error', "Image $code should be of types (" . implode(', ', $mimes) . '). All images before was scanned successfully');
+                return redirect(route('products.updatePage'));
+            }
+        }
+
+        session()->flash('success', 'Images was scanned successfully');
+        return redirect(route('products.index'));
     }
 }

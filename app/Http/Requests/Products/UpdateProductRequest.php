@@ -4,6 +4,7 @@ namespace App\Http\Requests\Products;
 
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -27,6 +28,10 @@ class UpdateProductRequest extends FormRequest
         return array_merge(Product::rules(), [
             'product_id' => 'required|exists:products,id',
             'image' => 'mimes:png,jpg,jpeg,webp',
+            'code' => [
+                'required',
+                Rule::unique('products')->whereNot('id', $this->product_id)
+            ]
         ]);
     }
 }

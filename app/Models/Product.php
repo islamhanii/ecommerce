@@ -9,16 +9,17 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'price', 'main_image', 'sub_category_id'];
+    protected $fillable = ['code', 'description', 'price', 'main_image', 'sub_category_id'];
 
     public static function rules() {
         return [
             'name_en' => 'required|min:3',
             'name_ar' => 'required|min:3',
+            'code' => 'required|unique:products',
             'description' => 'required|min:10',
             'image' => 'required|mimes:png,jpg,jpeg,webp',
             'price' => 'required|numeric',
-            'select' => 'required|exists:sub_categories,id'
+            'sub_category_id' => 'required|exists:sub_categories,id'
         ];
     }
 

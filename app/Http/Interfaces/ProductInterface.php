@@ -11,4 +11,7 @@ interface ProductInterface {
     public function destroy($request);
     public function uploadPage();
     public function upload($request);
+    public function updateUploadPage();
+    public function uploadUpdate($request);
+    public function scanImages();
 }

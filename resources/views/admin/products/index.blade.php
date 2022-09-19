@@ -53,6 +53,7 @@
                                     <thead>
                                     <tr>
                                         <th class="checkbox-column"> Record Id </th>
+                                        <th class="text-center"> Product Code </th>
                                         <th class="text-center">Description</th>
                                         <th class="text-center">Price</th>
                                         <th class="text-center">Main-Image</th>
@@ -68,10 +69,11 @@
                                     @foreach($products as $product)
                                         <tr>
                                             <td class="checkbox-column"> {{$i++}} </td>
+                                            <td class="text-center">{{$product->code}}</td>
                                             <td class="text-center">{!! mb_strimwidth($product->description,0,80,',...') !!}</td>
                                             <td class="text-center">{{$product->price}}</td>
                                             <td class="text-center">
-                                                <span><img src="{{asset('images/'.$product->main_image)}}" class="rounded-circle profile-img" alt="avatar"></span>
+                                                <span><img src="{{asset('uploads/'.$product->main_image)}}" class="rounded-circle profile-img" alt="avatar"></span>
                                             </td>
                                             <td class="text-center">{{$product->sub_category->name}}</td>
                                             <td class="text-center">

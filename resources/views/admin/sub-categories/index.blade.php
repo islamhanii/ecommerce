@@ -69,7 +69,7 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->category->name}}</td>
                                         <td class="text-center">
-                                            <span><img src="{{asset('images/'.$item->image)}}" class="rounded-circle profile-img" alt="avatar"></span>
+                                            <span><img src="{{asset('uploads/'.$item->image)}}" class="rounded-circle profile-img" alt="avatar"></span>
                                         </td>
 
                                         <td class="text-center">

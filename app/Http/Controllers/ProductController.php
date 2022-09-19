@@ -47,4 +47,16 @@ class ProductController extends Controller
     public function upload(UploadFileProductRequest $request) {
         return $this->productInterface->upload($request);
     }
+
+    public function updateUploadPage() {
+        return $this->productInterface->updateUploadPage();
+    }
+
+    public function uploadUpdate(UploadFileProductRequest $request) {
+        return $this->productInterface->uploadUpdate($request);
+    }
+
+    public function scanImages() {
+        return $this->productInterface->scanImages();
+    }
 }
