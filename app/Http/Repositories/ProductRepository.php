@@ -175,24 +175,22 @@ class ProductRepository implements ProductInterface {
                     if($product->main_image)    $this->deleteImage($product->main_image);
                     $path = Storage::putFile('products', $fullPath);
                     $product->update([
-                        'code' => $product->code,
-                        'description' => $product->description,
-                        'price' => $product->price,
                         'main_image' => $path
                     ]);
+                    unlink($fullPath);
                 }
                 else {
-                    session()->flash('error', "No products matches this code($code). All images before was scanned successfully");
+                    session()->flash('error', "No products matches this code ($code).");
                     return redirect(route('products.updatePage'));
                 }
             }
             else {
-                session()->flash('error', "Image $code should be of types (" . implode(', ', $mimes) . '). All images before was scanned successfully');
+                session()->flash('error', "Image $code should be of types (" . implode(', ', $mimes) . ').');
                 return redirect(route('products.updatePage'));
             }
         }
 
-        session()->flash('success', 'Images was scanned successfully');
+        session()->flash('success', 'Images was scanned successfully.');
         return redirect(route('products.index'));
     }
 }
