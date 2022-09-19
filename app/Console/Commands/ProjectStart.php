@@ -84,6 +84,8 @@ class ProjectStart extends Command
         ]);
 
         $this->info('User was created successfully. You can login your email from this page ' . route('loginPage'));
+
+        return self::SUCCESS;
     }
 
     public function enterData($type, $validations) {

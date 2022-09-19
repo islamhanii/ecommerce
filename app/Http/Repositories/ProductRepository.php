@@ -13,6 +13,7 @@ use App\Models\Language;
 use App\Models\Product;
 use App\Models\ProductName;
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -70,7 +71,7 @@ class ProductRepository implements ProductInterface {
             ]);
         }
 
-        session()->flash('success', 'Product was created successfully.');
+        session()->flash('success', 'Product created successfully.');
         return redirect(route('products.index'));
     }
 
@@ -116,7 +117,7 @@ class ProductRepository implements ProductInterface {
             ]);
         }
 
-        session()->flash('success', 'Product was updated successfully.');
+        session()->flash('success', 'Product updated successfully.');
         return redirect(route('products.index'));
     }
 
@@ -127,7 +128,7 @@ class ProductRepository implements ProductInterface {
         $product->delete();
         $this->deleteImage($product->main_image);
 
-        session()->flash('success', 'Product was deleted successfully.');
+        session()->flash('success', 'Product deleted successfully.');
         return redirect(route('products.index'));
     }
 
@@ -140,7 +141,7 @@ class ProductRepository implements ProductInterface {
     public function upload($request) {
         Excel::import(new ProductImport, $request->file('file'));
 
-        session()->flash('success', 'Products was uploaded successfully.');
+        session()->flash('success', 'Products uploaded successfully.');
         return redirect(route('products.index'));
     }
 
@@ -153,44 +154,20 @@ class ProductRepository implements ProductInterface {
     public function uploadUpdate($request) {
         Excel::import(new UpdateProductImport, $request->file('file'));
 
-        session()->flash('success', 'Products was uploaded successfully.');
+        session()->flash('success', 'Products uploaded successfully.');
         return redirect(route('products.index'));
     }
 
     /*-------------------------------------Upload Update Product-----------------------------------*/
 
     public function scanImages() {
-        $mimes = ['png', 'jpg', 'jpeg', 'webp'];
-        $files = Storage::disk('local')->files('public/images');
-
-        foreach($files as $file) {
-            $fullPath = Storage::disk('local')->path($file);
-            $fileContent = explode('/', $file);
-            $fileName = explode('.', $fileContent[2]);
-            $code = $fileName[0];
-            $mime = strtolower($fileName[1]);
-
-            if(in_array($mime, $mimes)) {
-                if($product = $this->getProductByCode($code)) {
-                    if($product->main_image)    $this->deleteImage($product->main_image);
-                    $path = Storage::putFile('products', $fullPath);
-                    $product->update([
-                        'main_image' => $path
-                    ]);
-                    unlink($fullPath);
-                }
-                else {
-                    session()->flash('error', "No products matches this code ($code).");
-                    return redirect(route('products.updatePage'));
-                }
-            }
-            else {
-                session()->flash('error', "Image $code should be of types (" . implode(', ', $mimes) . ').');
-                return redirect(route('products.updatePage'));
-            }
+        $result = Artisan::call('scan:images');
+        if($result === 1) {
+            session()->flash('error', 'Please check images\' types (jpg, jpeg, png, webp) Or products code.');
+            return redirect(route('products.updatePage'));
         }
 
-        session()->flash('success', 'Images was scanned successfully.');
+        session()->flash('success', 'Images scanned successfully.');
         return redirect(route('products.index'));
     }
 }
