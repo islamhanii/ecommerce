@@ -5,11 +5,15 @@ namespace App\Http\Traits;
 trait ProductTrait {
     private function getProducts()
     {
-        return $this->productModel::get();
+        return $this->productModel->get();
     }
 
     private function getProductById($productId)
     {
-        return $this->productModel::findOrFail($productId);
+        return $this->productModel->findOrFail($productId);
+    }
+
+    private function getProductByCode($productCode) {
+        return $this->productModel->where('code', $productCode)->first();
     }
 }

@@ -5,11 +5,11 @@ trait SubCategoryTrait
 {
     private function getSubCategories()
     {
-        return $this->subCategoryModel::get();
+        return $this->subCategoryModel->get();
     }
 
     private function getSubCategoryById($subCategoryId)
     {
-        return $this->subCategoryModel::findOrFail($subCategoryId);
+        return $this->subCategoryModel->findOrFail($subCategoryId);
     }
 }

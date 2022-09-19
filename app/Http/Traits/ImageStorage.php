@@ -5,7 +5,7 @@ namespace App\Http\Traits;
 use Illuminate\Support\Facades\Storage;
 
 trait ImageStorage {
-    public function uploadImage($request, $folder, $record = null, $recordImageName = 'image') {
+    private function uploadImage($request, $folder, $record = null, $recordImageName = 'image') {
         if(!$record) {
             if(!$request->hasFile('image')) return null;
             return Storage::putFile($folder, $request->file('image'));
@@ -18,7 +18,7 @@ trait ImageStorage {
         return Storage::putFile($folder, $request->file('image'));
     }
 
-    public function deleteImage($path) {
+    private function deleteImage($path) {
         Storage::delete($path);
     }
 }
