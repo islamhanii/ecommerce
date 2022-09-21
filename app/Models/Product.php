@@ -13,10 +13,10 @@ class Product extends Model
 
     public static function rules() {
         return [
-            'name_en' => 'required|min:3',
-            'name_ar' => 'required|min:3',
-            'code' => 'required|unique:products',
-            'description' => 'required|min:10',
+            'name_en' => 'required|string|min:3|max:255',
+            'name_ar' => 'required|string|min:3|max:255',
+            'code' => 'required|string|unique:products',
+            'description' => 'required|string|min:10|max:10000',
             'image' => 'required|mimes:png,jpg,jpeg,webp',
             'price' => 'required|numeric',
             'sub_category_id' => 'required|exists:sub_categories,id'
@@ -27,7 +27,11 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
     
-    public function productNames() {
+    public function product_names() {
         return $this->hasMany(ProductName::class, 'product_id', 'id');
+    }
+
+    public function product_details() {
+        return $this->hasMany(ProductDetail::class, 'product_id', 'id');
     }
 }

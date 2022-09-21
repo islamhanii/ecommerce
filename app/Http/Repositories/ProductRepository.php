@@ -81,7 +81,7 @@ class ProductRepository implements ProductInterface {
         $product = $this->getProductById($productId);
         $languages = $this->getLanguages();
         foreach($languages as $language) {
-            foreach($product->productNames as $name) {
+            foreach($product->product_names as $name) {
                 if($name->language_id == $language->id) {
                     $key = 'name_' . $language->name;
                     $product->$key = $name->name;
