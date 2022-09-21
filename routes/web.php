@@ -4,11 +4,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Category_PolicyController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\WishListController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductDetailsController;
-use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EndUser\ProductsController as EndUserProductsController;
 use App\Http\Controllers\SizeController;
@@ -68,6 +68,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/products/details/upload',[ProductDetailsController::class,'upload'])->name('product.details.uploadPage');
     Route::post('/products/details/upload',[ProductDetailsController::class,'uploadFile'])->name('product.details.upload');
 
+    #------------------------------------Route Colors Admin---------------------------------------#
+    Route::get('colors', [ColorController::class, 'index'])->name('colors.index');
+    Route::get('colors/create', [ColorController::class, 'create'])->name('colors.create');
+    Route::post('colors/store', [ColorController::class, 'store'])->name('colors.store');
+    Route::get('colors/edit/{id}', [ColorController::class, 'edit'])->name('colors.edit');
+    Route::put('colors/update', [ColorController::class, 'update'])->name('colors.update');
+    Route::delete('colors/delete', [ColorController::class, 'delete'])->name('colors.delete');
     #------------------------------------Route SizeUnits Admin---------------------------------------#
     Route::get('/size-unit',[SizeUnitsController::class,'index'])->name('size-unit.index');
     Route::get('/size-unit/create',[SizeUnitsController::class,'create'])->name('size-unit.create');
@@ -104,16 +111,6 @@ Route::group(['prefix' => 'user' , 'middleware' => ['auth'], 'as' => 'wishlist.'
     Route::get('/wishlist/{lang}', [WishListController::class, 'index']);
     Route::post('/wishlist', [WishListController::class, 'store'])->name('store');
     Route::delete('/wishlist/delete/{id}', [WishListController::class, 'destroy'])->name('delete');
-
-    /*========================================Colors Routes==============================================*/
-
-    Route::get('colors', [ColorsController::class, 'index'])->name('admin.colors.index');
-    Route::get('colors/create', [ColorsController::class, 'create'])->name('admin.colors.create');
-    Route::post('colors/store', [ColorsController::class, 'store'])->name('admin.colors.create.store');
-    Route::get('colors/update/{id}', [ColorsController::class, 'updatePage'])->name('admin.colors.updatePage');
-    Route::put('colors/update/{id}', [ColorsController::class, 'update'])->name('admin.colors.update');
-    Route::delete('colors/delete/{id}', [ColorsController::class, 'delete'])->name('admin.colors.delete');
-
 });
 
 Route::get('/products/{sub_category_id}/{lang}',[EndUserProductsController::class, 'subCategoryProducts'])->name('products');

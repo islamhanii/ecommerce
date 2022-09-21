@@ -9,12 +9,12 @@ class Color extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['color', 'hexa'];
+    protected $fillable = ['name', 'hexa'];
 
     public static function rules() {
         return [
-            'color' => 'required|min:3|max:255',
-            'hexa' => 'required|min:7|max:7|start_with:#'
+            'name' => 'required|min:3|max:255',
+            'hexa' => 'required|min:7|max:7|starts_with:#'
         ];
     }
 

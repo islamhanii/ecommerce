@@ -1,56 +1,43 @@
-@include('admin.assets.navbar')
+@extends('admin.layouts.master')
 
-<!--  BEGIN MAIN CONTAINER  -->
-<div class="main-container sidebar-closed sbar-open" id="container">
+@section('title')
+    Colors | Edit
+@endsection
 
-    <div class="overlay"></div>
-    <div class="cs-overlay"></div>
-    <div class="search-overlay"></div>
-
+@section('content')
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="container">
-
-            <div class="container">
-
-
-                <div class="row layout-top-spacing">
-
-                    <div id="basic" class="col-lg-12 layout-spacing">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>Input Text</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-
-                                <div class="row">
-                                    <div class="col-lg-6 col-12 mx-auto">
-                                        @if($errors->any())
-                                            @foreach($errors->all() as $error)
-                                                {{$error}}
-                                            @endforeach
-                                        @endif
-                                        <form method="post" action="{{route('admin.colors.update',[$color->id])}}">
-                                            @csrf
-                                            @method('PUT')
-                                            @include('admin.colors._forms')
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+            <div class="container my-5 mx-auto">
+                @include('partials.session')
+                <form class="form-vertical" action="{{route('colors.update')}}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="color_id" value="{{$color->id}}">
+                    <div class="form-group mb-4">
+                        <label class="control-label">Color Name:</label>
+                        <input type="text" name="name" class="form-control @error('name') is-invalid fparsley-error parsley-error @enderror" placeholder="Color Name" value="{{old('name')?old('name'):$color->name}}">
+                        @error('name')
+                        <span class="invalid-feedback text-danger" role="alert">
+                          <p>{{ $message }}</p>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="control-label">Hexa Code:</label>
+                        <input type="color" name="hexa" class="form-control @error('hexa') is-invalid fparsley-error parsley-error @enderror" placeholder="Color Hexa Code" value="{{old('hexa')?old('hexa'):$color->hexa}}">
+                        @error('hexa')
+                        <span class="invalid-feedback text-danger" role="alert">
+                          <p>{{ $message }}</p>
+                        </span>
+                        @enderror
                     </div>
 
-                </div>
+                    <input type="submit" value="Update" class="btn btn-primary ml-3 mt-3">
+                </form>
             </div>
         </div>
-        <!--  END CONTENT AREA  -->
     </div>
-    <!-- END MAIN CONTAINER -->
 
-@include('admin.assets.footer')
+    <!-- End Card -->
+@endsection
