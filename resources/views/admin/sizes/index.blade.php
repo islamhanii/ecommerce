@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    SizeUnits | Dashboard
+    Sizes | Dashboard
 @endsection
 @section('css')
     <!-- BEGIN PAGE LEVEL STYLES -->
@@ -16,7 +16,7 @@
 
             <div class="page-header">
                 <div class="page-title">
-                    <h3>All SizeUnits</h3>
+                    <h3>All Sizes</h3>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                             <table id="zero-config" class="table table-hover" style="width:100%">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Size Value</th>
                                     <th>SizeUnit Name</th>
                                     <th class="no-content"></th>
                                     <th class="no-content"></th>
@@ -39,8 +39,8 @@
                                 @isset($sizes)
                                 @foreach($sizes as $item)
                                     <tr>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$unitSize->name}}</td>
+                                        <td>{{$item->size}}</td>
+                                        <td>{{$item->size_unit->unit}}</td>
 
                                         <td>
                                             <form method="post" action="{{route('sizes.delete')}}">

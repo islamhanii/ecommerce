@@ -47,6 +47,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Interfaces\ColorInterface::class,
             \App\Http\Repositories\ColorRepository::class
         );
+
+        $this->app->bind(
+            \App\Http\Interfaces\SizeInterface::class,
+            \App\Http\Repositories\SizeRepository::class
+        );
     }
 
     /**

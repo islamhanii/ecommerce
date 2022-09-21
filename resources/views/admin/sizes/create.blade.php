@@ -23,9 +23,9 @@
                 <form class="form-vertical" action="{{route('sizes.store')}}" method="post">
                     @csrf
                     <div class="form-group mb-4">
-                        <label class="control-label">Size Name:</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid fparsley-error parsley-error @enderror" placeholder="SizeUnit Name" value="{{old('name')}}">
-                        @error('name')
+                        <label class="control-label">Size:</label>
+                        <input type="text" name="size" class="form-control @error('size') is-invalid fparsley-error parsley-error @enderror" placeholder="SizeUnit Value" value="{{old('size')}}">
+                        @error('size')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>
@@ -33,13 +33,13 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <select class="form-control  basic @error('select') is-invalid fparsley-error parsley-error @enderror" name="select">
+                        <select class="form-control  basic @error('size_unit_id') is-invalid fparsley-error parsley-error @enderror" name="size_unit_id">
                             <option value="Choose SizeUnit">Choose SizeUnit</option>
                             @foreach($sizeUnits as $sizeUnit)
-                            <option value="{{$sizeUnit->id}}">{{$sizeUnit->name}}</option>
+                            <option value="{{$sizeUnit->id}}">{{$sizeUnit->unit}}</option>
                             @endforeach
                         </select>
-                        @error('select')
+                        @error('size_unit_id')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>
