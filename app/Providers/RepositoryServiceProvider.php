@@ -37,6 +37,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Interfaces\ProductInterface::class,
             \App\Http\Repositories\ProductRepository::class
         );
+
+        $this->app->bind(
+            \App\Http\Interfaces\SizeUnitsInterface::class,
+            \App\Http\Repositories\SizeUnitsRepository::class
+        );
     }
 
     /**

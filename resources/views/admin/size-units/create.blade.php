@@ -14,8 +14,8 @@
                     @csrf
                     <div class="form-group mb-4">
                         <label class="control-label">SizeUnit Name:</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid fparsley-error parsley-error @enderror" placeholder="SizeUnit Name" value="{{old('name')}}">
-                        @error('name')
+                        <input type="text" name="unit" class="form-control @error('unit') is-invalid fparsley-error parsley-error @enderror" placeholder="SizeUnit Name" value="{{old('unit')}}">
+                        @error('unit')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>

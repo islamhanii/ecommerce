@@ -37,7 +37,7 @@
                                             <tbody>
                                             @foreach($sizeUnits as $item)
                                                 <tr>
-                                                    <td>{{$item->name}}</td>
+                                                    <td>{{$item->unit}}</td>
 
                                                     <td>
                                                         <form method="post" action="{{route('size-unit.delete')}}">
@@ -57,13 +57,6 @@
 
 
                                             </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
