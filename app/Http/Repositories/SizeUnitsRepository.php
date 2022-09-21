@@ -43,13 +43,13 @@ class SizeUnitsRepository implements SizeUnitsInterface {
     /*-------------------------------------Update Size Unit-----------------------------------*/
 
     public function edit($sizeUnitId) {
-        $sizeUnit = $this->getSizeUnitsById($sizeUnitId);
+        $sizeUnit = $this->getSizeUnitById($sizeUnitId);
 
         return view('admin.size-units.edit', compact('sizeUnit'));
     }
 
     public function update($request) {
-        $sizeUnit = $this->getSizeUnitsById($request->size_unit_id);
+        $sizeUnit = $this->getSizeUnitById($request->size_unit_id);
 
         $sizeUnit->update([
             'unit' => $request->unit
@@ -62,7 +62,7 @@ class SizeUnitsRepository implements SizeUnitsInterface {
     /*-------------------------------------Delete Size Unit-----------------------------------*/
 
     public function destroy($request) {
-        $sizeUnit = $this->getSizeUnitsById($request->size_unit_id);
+        $sizeUnit = $this->getSizeUnitById($request->size_unit_id);
 
         $sizeUnit->delete();
 

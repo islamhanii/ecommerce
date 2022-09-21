@@ -3,11 +3,11 @@
 namespace App\Http\Traits;
 
 trait SizeUnitsTrait {
-    public function getSizeUnits() {
+    private function getSizeUnits() {
         return $this->sizeUnitsModel->get();
     }
 
-    public function getSizeUnitsById($sizeUnitId) {
+    private function getSizeUnitById($sizeUnitId) {
         return $this->sizeUnitsModel->findOrFail($sizeUnitId);
     }
 }
