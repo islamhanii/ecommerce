@@ -21,7 +21,7 @@
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <div class="form-group mb-4">
                         <label class="control-label">Name EN:</label>
-                        <input type="text" name="name_en" class="form-control @error('name_en') is-invalid fparsley-error parsley-error @enderror" placeholder="English Name" value="{{$product->name_en}}">
+                        <input type="text" name="name_en" class="form-control @error('name_en') is-invalid fparsley-error parsley-error @enderror" placeholder="English Name" value="{{$product->product_names[0]->name}}">
                         @error('name_en')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label class="control-label">Name AR:</label>
-                        <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid fparsley-error parsley-error @enderror" placeholder="Arabic Name" value="{{$product->name_ar}}">
+                        <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid fparsley-error parsley-error @enderror" placeholder="Arabic Name" value="{{$product->product_names[1]->name}}">
                         @error('name_ar')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <select class="form-control  basic @error('select') is-invalid fparsley-error parsley-error @enderror" name="sub_category_id">
+                        <select class="form-control  basic @error('sub_category_id') is-invalid fparsley-error parsley-error @enderror" name="sub_category_id">
                             <option>Choose Category</option>
                             @isset($subcategories)
                                 @foreach($subcategories as $item)
@@ -105,7 +105,7 @@
                                 @endforeach
                             @endisset
                         </select>
-                        @error('select')
+                        @error('sub_category_id')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>

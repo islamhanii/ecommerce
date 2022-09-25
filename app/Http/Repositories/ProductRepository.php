@@ -78,19 +78,9 @@ class ProductRepository implements ProductInterface {
     /*-------------------------------------Update Product-----------------------------------*/
 
     public function edit($productId) {
-        $product = $this->getProductById($productId);
-        $languages = $this->getLanguages();
-        foreach($languages as $language) {
-            foreach($product->product_names as $name) {
-                if($name->language_id == $language->id) {
-                    $key = 'name_' . $language->name;
-                    $product->$key = $name->name;
-                    break;
-                }
-            }
-        }
-
+        $product = $this->getProductById($productId, 'product_names');
         $subcategories = $this->getSubCategories();
+        
         return view('admin.products.edit', compact('subcategories', 'product'));
     }
 

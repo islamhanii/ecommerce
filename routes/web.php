@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/products/edit/{id}',[ProductController::class,'edit'])->name('products.edit');
     Route::put('/products/update',[ProductController::class,'update'])->name('products.update');
     Route::delete('/products/delete',[ProductController::class,'delete'])->name('products.delete');
+
     Route::get('/products/upload',[ProductController::class,'uploadPage'])->name('products.uploadPage');
     Route::post('/products/upload',[ProductController::class,'upload'])->name('products.upload');
     Route::get('/products/update',[ProductController::class,'updateUploadPage'])->name('products.updatePage');
@@ -69,6 +70,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/products/details/index',[ProductDetailsController::class,'index'])->name('product.details.index');
     Route::get('/products/details/create',[ProductDetailsController::class,'create'])->name('product.details.create');
     Route::post('/products/details/store',[ProductDetailsController::class,'store'])->name('product.details.store');
+    Route::get('/products/details/edit/{id}',[ProductDetailsController::class,'edit'])->name('product.details.edit');
+    Route::put('/products/details/update',[ProductDetailsController::class,'update'])->name('product.details.update');
+    Route::delete('/products/details/delete',[ProductDetailsController::class,'delete'])->name('product.details.delete');
+
     Route::get('/products/details/upload',[ProductDetailsController::class,'upload'])->name('product.details.uploadPage');
     Route::post('/products/details/upload',[ProductDetailsController::class,'uploadFile'])->name('product.details.upload');
 

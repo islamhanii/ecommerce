@@ -13,23 +13,23 @@ class ProductDetail extends Model
 
     public static function rules() {
         return [
-            'stock' => 'reuired|integer',
-            'image' => 'reuired|mimes:png,jpg,jpeg,webp',
+            'stock' => 'required|integer',
+            'image' => 'required|mimes:png,jpg,jpeg,webp',
             'product_id' => 'required|exists:products,id',
             'size_id' => 'required|exists:sizes,id',
             'color_id' => 'required|exists:colors,id'
         ];
     }
 
-    public function products() {
+    public function product() {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
-    public function sizes() {
+    public function size() {
         return $this->belongsTo(Size::class, 'size_id', 'id');
     }
 
-    public function colors() {
+    public function color() {
         return $this->belongsTo(Color::class, 'color_id', 'id');
     }
 }

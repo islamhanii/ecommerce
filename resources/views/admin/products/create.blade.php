@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <select class="form-control  basic @error('select') is-invalid fparsley-error parsley-error @enderror" name="sub_category_id">
+                        <select class="form-control  basic @error('sub_category_id') is-invalid fparsley-error parsley-error @enderror" name="sub_category_id">
                             <option>Choose Category</option>
                             @isset($subcategories)
                             @foreach($subcategories as $item)
@@ -99,7 +99,7 @@
                             @endforeach
                             @endisset
                         </select>
-                        @error('select')
+                        @error('sub_category_id')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>

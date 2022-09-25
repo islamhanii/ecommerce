@@ -11,11 +11,11 @@ class ProductName extends Model
 
     protected $fillable = ['name', 'product_id', 'language_id'];
 
-    public function languages() {
+    public function language() {
         return $this->belongsTo(Language::class, 'language_id', 'id');
     }
 
-    public function products() {
+    public function product() {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

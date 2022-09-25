@@ -3,14 +3,12 @@
 namespace App\Http\Traits;
 
 trait ProductTrait {
-    private function getProducts()
-    {
-        return $this->productModel->get();
+    private function getProducts($with = []) {
+        return $this->productModel->with($with)->get();
     }
-
-    private function getProductById($productId)
-    {
-        return $this->productModel->findOrFail($productId);
+    
+    private function getProductById($productId, $with = []) {
+        return $this->productModel->with($with)->findOrFail($productId);
     }
 
     private function getProductByCode($productCode) {

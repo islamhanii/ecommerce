@@ -11,7 +11,7 @@ class Language extends Model
 
     protected $fillable = ['name'];
     
-    public function productNames() {
+    public function product_names() {
         return $this->hasMany(ProductName::class, 'language_id', 'id');
     }
 }
