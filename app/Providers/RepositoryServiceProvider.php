@@ -57,6 +57,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Interfaces\ProductDetailsInterface::class,
             \App\Http\Repositories\ProductDetailsRepository::class
         );
+
+        $this->app->bind(
+            \App\Http\Interfaces\SliderInterface::class,
+            \App\Http\Repositories\SliderRepository::class
+        );
     }
 
     /**

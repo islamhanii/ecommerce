@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EndUser\ProductsController as EndUserProductsController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SizeUnitsController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,10 +28,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//})->name('home');
+/* 
+* ------------------------------------------------------------------------------------------------
+* ---------------------------------------- Public Routes -----------------------------------------
+* ------------------------------------------------------------------------------------------------
+*/
+
+Route::get('/login-page',[AuthController::class,'index'])->name('loginPage');
+Route::post('/login-page',[AuthController::class,'login'])->name('login');
+
+/* 
+* ------------------------------------------------------------------------------------------------
+* ---------------------------------------- End User Routes -----------------------------------------
+* ------------------------------------------------------------------------------------------------
+*/
+
 Route::get('/', [HomeController::class,'index'])->name('home');
+
+/* 
+* ------------------------------------------------------------------------------------------------
+* ---------------------------------------- Admin Routes -----------------------------------------
+* ------------------------------------------------------------------------------------------------
+*/
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/',[AdminController::class,'index'])->name('admin.index');
@@ -67,15 +86,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::post('/products/images/scan',[ProductController::class,'scanImages'])->name('products.scanImages');
     
     #------------------------------------Route Product Details Admin---------------------------------------#
-    Route::get('/products/details/index',[ProductDetailsController::class,'index'])->name('product.details.index');
-    Route::get('/products/details/create',[ProductDetailsController::class,'create'])->name('product.details.create');
-    Route::post('/products/details/store',[ProductDetailsController::class,'store'])->name('product.details.store');
-    Route::get('/products/details/edit/{id}',[ProductDetailsController::class,'edit'])->name('product.details.edit');
-    Route::put('/products/details/update',[ProductDetailsController::class,'update'])->name('product.details.update');
-    Route::delete('/products/details/delete',[ProductDetailsController::class,'delete'])->name('product.details.delete');
-
-    Route::get('/products/details/upload',[ProductDetailsController::class,'upload'])->name('product.details.uploadPage');
-    Route::post('/products/details/upload',[ProductDetailsController::class,'uploadFile'])->name('product.details.upload');
+    Route::get('/products-details/index',[ProductDetailsController::class,'index'])->name('product.details.index');
+    Route::get('/products-details/create',[ProductDetailsController::class,'create'])->name('product.details.create');
+    Route::post('/products-details/store',[ProductDetailsController::class,'store'])->name('product.details.store');
+    Route::get('/products-details/edit/{id}',[ProductDetailsController::class,'edit'])->name('product.details.edit');
+    Route::put('/products-details/update',[ProductDetailsController::class,'update'])->name('product.details.update');
+    Route::delete('/products-details/delete',[ProductDetailsController::class,'delete'])->name('product.details.delete');
 
     #------------------------------------Route Colors Admin---------------------------------------#
     Route::get('colors', [ColorController::class, 'index'])->name('colors.index');
@@ -100,13 +116,21 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::put('/sizes/update',[SizeController::class,'update'])->name('sizes.update');
     Route::delete('/sizes/delete',[SizeController::class,'delete'])->name('sizes.delete');
 
+    #------------------------------------Route Slider Admin---------------------------------------#
+    Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
+    Route::get('/sliders/create', [SliderController::class, 'create'])->name('sliders.create');
+    Route::post('/sliders/store', [SliderController::class, 'store'])->name('sliders.store');
+    Route::get('/sliders/edit/{id}', [SliderController::class, 'edit'])->name('sliders.edit');
+    Route::put('/sliders/update', [SliderController::class, 'update'])->name('sliders.update');
+    Route::delete('/sliders/delete', [SliderController::class, 'delete'])->name('sliders.delete');
+
     #------------------------------------Route CategoryPolicy Admin---------------------------------------#
-    Route::get('/category_policy',[Category_PolicyController::class,'index'])->name('categoryPolicy.index');
-    Route::get('/category_policy/create',[Category_PolicyController::class,'create'])->name('categoryPolicy.create');
-    Route::post('/category_policy/store',[Category_PolicyController::class,'store'])->name('categoryPolicy.store');
-    Route::get('/category_policy/edit/{id}',[Category_PolicyController::class,'edit'])->name('categoryPolicy.edit');
-    Route::put('/category_policy/update',[Category_PolicyController::class,'update'])->name('categoryPolicy.update');
-    Route::delete('/category_policy/delete',[Category_PolicyController::class,'delete'])->name('categoryPolicy.delete');
+    Route::get('/category-policy',[CategoryPolicyController::class,'index'])->name('categoryPolicy.index');
+    Route::get('/category-policy/create',[CategoryPolicyController::class,'create'])->name('categoryPolicy.create');
+    Route::post('/category-policy/store',[CategoryPolicyController::class,'store'])->name('categoryPolicy.store');
+    Route::get('/category-policy/edit/{id}',[CategoryPolicyController::class,'edit'])->name('categoryPolicy.edit');
+    Route::put('/category-policy/update',[CategoryPolicyController::class,'update'])->name('categoryPolicy.update');
+    Route::delete('/category-policy/delete',[CategoryPolicyController::class,'delete'])->name('categoryPolicy.delete');
     
     #------------------------------------Route Policy Admin---------------------------------------#
     Route::get('/policies',[PolicyController::class,'index'])->name('policy.index');
@@ -127,6 +151,3 @@ Route::group(['prefix' => 'user' , 'middleware' => ['auth'], 'as' => 'wishlist.'
 
 Route::get('/products/{sub_category_id}/{lang}',[EndUserProductsController::class, 'subCategoryProducts'])->name('products');
 Route::get('/product/details/{productId}/{lang}',[EndUserProductsController::class, 'productDetail'])->name('product.details');
-
-Route::get('/login-page',[AuthController::class,'index'])->name('loginPage');
-Route::post('/login-page',[AuthController::class,'login'])->name('login');
