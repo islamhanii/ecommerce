@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -123,6 +124,14 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/sliders/edit/{id}', [SliderController::class, 'edit'])->name('sliders.edit');
     Route::put('/sliders/update', [SliderController::class, 'update'])->name('sliders.update');
     Route::delete('/sliders/delete', [SliderController::class, 'delete'])->name('sliders.delete');
+
+    #------------------------------------Route Slider Admin---------------------------------------#
+    Route::get('/abouts', [AboutController::class, 'index'])->name('abouts.index');
+    Route::get('/abouts/create', [AboutController::class, 'create'])->name('abouts.create');
+    Route::post('/abouts/store', [AboutController::class, 'store'])->name('abouts.store');
+    Route::get('/abouts/edit/{id}', [AboutController::class, 'edit'])->name('abouts.edit');
+    Route::put('/abouts/update', [AboutController::class, 'update'])->name('abouts.update');
+    Route::delete('/abouts/delete', [AboutController::class, 'delete'])->name('abouts.delete');
 
     #------------------------------------Route CategoryPolicy Admin---------------------------------------#
     Route::get('/category-policy',[CategoryPolicyController::class,'index'])->name('categoryPolicy.index');
