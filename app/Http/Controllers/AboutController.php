@@ -6,7 +6,6 @@ use App\Http\Interfaces\AboutInterface;
 use App\Http\Requests\Abouts\AddAboutRequest;
 use App\Http\Requests\Abouts\DeleteAboutRequest;
 use App\Http\Requests\Abouts\UpdateAboutRequest;
-use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {

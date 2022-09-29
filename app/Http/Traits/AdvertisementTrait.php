@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Http\Traits;
+
+trait AdvertisementTrait {
+    private function getAdvertisements() {
+        return $this->advertisementModel->get();
+    }
+
+    private function getAdvertisementById($advertisementId) {
+        return $this->advertisementModel->findOrFail($advertisementId);
+    }
+}

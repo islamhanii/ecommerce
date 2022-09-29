@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Category_PolicyController;
@@ -125,13 +126,21 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::put('/sliders/update', [SliderController::class, 'update'])->name('sliders.update');
     Route::delete('/sliders/delete', [SliderController::class, 'delete'])->name('sliders.delete');
 
-    #------------------------------------Route Slider Admin---------------------------------------#
+    #------------------------------------Route About Admin---------------------------------------#
     Route::get('/abouts', [AboutController::class, 'index'])->name('abouts.index');
     Route::get('/abouts/create', [AboutController::class, 'create'])->name('abouts.create');
     Route::post('/abouts/store', [AboutController::class, 'store'])->name('abouts.store');
     Route::get('/abouts/edit/{id}', [AboutController::class, 'edit'])->name('abouts.edit');
     Route::put('/abouts/update', [AboutController::class, 'update'])->name('abouts.update');
     Route::delete('/abouts/delete', [AboutController::class, 'delete'])->name('abouts.delete');
+
+    #------------------------------------Route Advertisement Admin---------------------------------------#
+    Route::get('/advertisements', [AdvertisementController::class, 'index'])->name('advertisements.index');
+    Route::get('/advertisements/create', [AdvertisementController::class, 'create'])->name('advertisements.create');
+    Route::post('/advertisements/store', [AdvertisementController::class, 'store'])->name('advertisements.store');
+    Route::get('/advertisements/edit/{id}', [AdvertisementController::class, 'edit'])->name('advertisements.edit');
+    Route::put('/advertisements/update', [AdvertisementController::class, 'update'])->name('advertisements.update');
+    Route::delete('/advertisements/delete', [AdvertisementController::class, 'delete'])->name('advertisements.delete');
 
     #------------------------------------Route CategoryPolicy Admin---------------------------------------#
     Route::get('/category-policy',[CategoryPolicyController::class,'index'])->name('categoryPolicy.index');

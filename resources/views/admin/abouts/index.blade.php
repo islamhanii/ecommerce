@@ -32,7 +32,7 @@
 
             <div class="page-header">
                 <div class="page-title">
-                    <h3>All Products</h3>
+                    <h3>All Abouts</h3>
                 </div>
             </div>
 
