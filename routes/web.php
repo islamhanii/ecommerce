@@ -5,8 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Category_PolicyController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\WishListController;
 use App\Http\Controllers\PolicyController;
@@ -141,6 +141,14 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/advertisements/edit/{id}', [AdvertisementController::class, 'edit'])->name('advertisements.edit');
     Route::put('/advertisements/update', [AdvertisementController::class, 'update'])->name('advertisements.update');
     Route::delete('/advertisements/delete', [AdvertisementController::class, 'delete'])->name('advertisements.delete');
+
+    #------------------------------------Route Company Admin---------------------------------------#
+    Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+    Route::get('/companies/create', [CompanyController::class, 'create'])->name('companies.create');
+    Route::post('/companies/store', [CompanyController::class, 'store'])->name('companies.store');
+    Route::get('/companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::put('/companies/update', [CompanyController::class, 'update'])->name('companies.update');
+    Route::delete('/companies/delete', [CompanyController::class, 'delete'])->name('companies.delete');
 
     #------------------------------------Route CategoryPolicy Admin---------------------------------------#
     Route::get('/category-policy',[CategoryPolicyController::class,'index'])->name('categoryPolicy.index');
