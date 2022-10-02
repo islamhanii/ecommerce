@@ -90,6 +90,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Interfaces\CompanyInterface::class,
             \App\Http\Repositories\CompanyRepository::class
         );
+
+        /*-------------------------------------Bind Detail-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\DetailInterface::class,
+            \App\Http\Repositories\DetailRepository::class
+        );
     }
 
     /**
