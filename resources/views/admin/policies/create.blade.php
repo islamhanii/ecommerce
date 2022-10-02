@@ -22,12 +22,12 @@
         <div class="container">
             <div class="container my-5 mx-auto">
                 @include('partials.session')
-                <form class="form-vertical" action="{{route('policy.store')}}" method="post">
+                <form class="form-vertical" action="{{route('policies.store')}}" method="post">
                     @csrf
                     <div class="form-group mb-4">
-                        <label class="control-label">Policy Name:</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid fparsley-error parsley-error @enderror" placeholder="Policy Name" value="{{old('name')}}">
-                        @error('name')
+                        <label class="control-label">Policy Title:</label>
+                        <input type="text" name="title" class="form-control @error('title') is-invalid fparsley-error parsley-error @enderror" placeholder="Policy Title" value="{{old('title')}}">
+                        @error('title')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>
@@ -44,13 +44,13 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <select class="form-control  basic @error('select') is-invalid fparsley-error parsley-error @enderror" name="select">
-                            <option value="Choose SizeUnit">Choose CategoryPolicy</option>
-                            @foreach($catPolicies as $value)
-                            <option value="{{$value->id}}">{{$value->name}}</option>
+                        <select class="form-control  basic @error('policy_category_id') is-invalid fparsley-error parsley-error @enderror" name="policy_category_id">
+                            <option value="Choose Policy Category">Choose Policy Category</option>
+                            @foreach($policyCategories as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
-                        @error('select')
+                        @error('policy_category_id')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
                         </span>

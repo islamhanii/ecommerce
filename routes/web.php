@@ -173,12 +173,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::put('/policy-categories/update',[PolicyCategoryController::class,'update'])->name('policy.categories.update');
     Route::delete('/policy-categories/delete',[PolicyCategoryController::class,'delete'])->name('policy.categories.delete');
     #------------------------------------Route Policy Admin---------------------------------------#
-    Route::get('/policies',[PolicyController::class,'index'])->name('policy.index');
-    Route::get('/policies/create',[PolicyController::class,'create'])->name('policy.create');
-    Route::post('/policies/store',[PolicyController::class,'store'])->name('policy.store');
-    Route::get('/policies/edit/{id}',[PolicyController::class,'edit'])->name('policy.edit');
-    Route::put('/policies/update',[PolicyController::class,'update'])->name('policy.update');
-    Route::delete('/policies/delete',[PolicyController::class,'delete'])->name('policy.delete');
+    Route::get('/policies',[PolicyController::class,'index'])->name('policies.index');
+    Route::get('/policies/create',[PolicyController::class,'create'])->name('policies.create');
+    Route::post('/policies/store',[PolicyController::class,'store'])->name('policies.store');
+    Route::get('/policies/edit/{id}',[PolicyController::class,'edit'])->name('policies.edit');
+    Route::put('/policies/update',[PolicyController::class,'update'])->name('policies.update');
+    Route::delete('/policies/delete',[PolicyController::class,'delete'])->name('policies.delete');
     #=================================================================================================
     #=================================================================================================
 });
