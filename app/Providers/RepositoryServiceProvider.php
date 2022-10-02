@@ -96,6 +96,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Interfaces\DetailInterface::class,
             \App\Http\Repositories\DetailRepository::class
         );
+
+        /*-------------------------------------Bind Policy Category-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\PolicyCategoryInterface::class,
+            \App\Http\Repositories\PolicyCategoryRepository::class
+        );
     }
 
     /**

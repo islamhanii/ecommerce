@@ -9,11 +9,10 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\EndUser\HomeController;
-use App\Http\Controllers\EndUser\WishListController;
+use App\Http\Controllers\PolicyCategoryController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\EndUser\ProductsController as EndUserProductsController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SizeUnitsController;
 use App\Http\Controllers\SliderController;
@@ -104,6 +103,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::put('colors/update', [ColorController::class, 'update'])->name('colors.update');
     Route::delete('colors/delete', [ColorController::class, 'delete'])->name('colors.delete');
     
+    #=================================================================================================
+    #=================================================================================================
     #------------------------------------Route SizeUnits Admin---------------------------------------#
     Route::get('/size-unit',[SizeUnitsController::class,'index'])->name('size-unit.index');
     Route::get('/size-unit/create',[SizeUnitsController::class,'create'])->name('size-unit.create');
@@ -111,6 +112,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/size-unit/edit/{id}',[SizeUnitsController::class,'edit'])->name('size-unit.edit');
     Route::put('/size-unit/update',[SizeUnitsController::class,'update'])->name('size-unit.update');
     Route::delete('/size-unit/delete',[SizeUnitsController::class,'delete'])->name('size-unit.delete');
+
     #------------------------------------Route Sizes Admin---------------------------------------#
     Route::get('/sizes',[SizeController::class,'index'])->name('sizes.index');
     Route::get('/sizes/create',[SizeController::class,'create'])->name('sizes.create');
@@ -118,6 +120,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/sizes/edit/{id}',[SizeController::class,'edit'])->name('sizes.edit');
     Route::put('/sizes/update',[SizeController::class,'update'])->name('sizes.update');
     Route::delete('/sizes/delete',[SizeController::class,'delete'])->name('sizes.delete');
+    #=================================================================================================
+    #=================================================================================================
 
     #------------------------------------Route Slider Admin---------------------------------------#
     Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
@@ -159,14 +163,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::put('/details/update', [DetailController::class, 'update'])->name('details.update');
     Route::delete('/details/delete', [DetailController::class, 'delete'])->name('details.delete');
 
-    #------------------------------------Route CategoryPolicy Admin---------------------------------------#
-    Route::get('/category-policy',[CategoryPolicyController::class,'index'])->name('categoryPolicy.index');
-    Route::get('/category-policy/create',[CategoryPolicyController::class,'create'])->name('categoryPolicy.create');
-    Route::post('/category-policy/store',[CategoryPolicyController::class,'store'])->name('categoryPolicy.store');
-    Route::get('/category-policy/edit/{id}',[CategoryPolicyController::class,'edit'])->name('categoryPolicy.edit');
-    Route::put('/category-policy/update',[CategoryPolicyController::class,'update'])->name('categoryPolicy.update');
-    Route::delete('/category-policy/delete',[CategoryPolicyController::class,'delete'])->name('categoryPolicy.delete');
-    
+    #=================================================================================================
+    #=================================================================================================
+    #------------------------------------Route Policy Category Admin----------------------------------#
+    Route::get('/policy-categories',[PolicyCategoryController::class,'index'])->name('policy.categories.index');
+    Route::get('/policy-categories/create',[PolicyCategoryController::class,'create'])->name('policy.categories.create');
+    Route::post('/policy-categories/store',[PolicyCategoryController::class,'store'])->name('policy.categories.store');
+    Route::get('/policy-categories/edit/{id}',[PolicyCategoryController::class,'edit'])->name('policy.categories.edit');
+    Route::put('/policy-categories/update',[PolicyCategoryController::class,'update'])->name('policy.categories.update');
+    Route::delete('/policy-categories/delete',[PolicyCategoryController::class,'delete'])->name('policy.categories.delete');
     #------------------------------------Route Policy Admin---------------------------------------#
     Route::get('/policies',[PolicyController::class,'index'])->name('policy.index');
     Route::get('/policies/create',[PolicyController::class,'create'])->name('policy.create');
@@ -174,15 +179,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function (){
     Route::get('/policies/edit/{id}',[PolicyController::class,'edit'])->name('policy.edit');
     Route::put('/policies/update',[PolicyController::class,'update'])->name('policy.update');
     Route::delete('/policies/delete',[PolicyController::class,'delete'])->name('policy.delete');
+    #=================================================================================================
+    #=================================================================================================
 });
-
-
-Route::group(['prefix' => 'user' , 'middleware' => ['auth'], 'as' => 'wishlist.'], function(){
-
-    Route::get('/wishlist/{lang}', [WishListController::class, 'index']);
-    Route::post('/wishlist', [WishListController::class, 'store'])->name('store');
-    Route::delete('/wishlist/delete/{id}', [WishListController::class, 'destroy'])->name('delete');
-});
-
-Route::get('/products/{sub_category_id}/{lang}',[EndUserProductsController::class, 'subCategoryProducts'])->name('products');
-Route::get('/product/details/{productId}/{lang}',[EndUserProductsController::class, 'productDetail'])->name('product.details');

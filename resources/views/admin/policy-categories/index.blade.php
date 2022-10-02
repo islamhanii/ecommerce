@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    CategoryPolicy | Dashboard
+    Policy Category | Dashboard
 @endsection
 @section('css')
     <!-- BEGIN PAGE LEVEL STYLES -->
@@ -16,7 +16,7 @@
 
             <div class="page-header">
                 <div class="page-title">
-                    <h3>All CategoryPolicies</h3>
+                    <h3>All Policy Categories</h3>
                 </div>
             </div>
 
@@ -35,20 +35,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categoryPolicies as $item)
+                                @foreach($policyCategories as $item)
                                     <tr>
                                         <td>{{$item->name}}</td>
 
                                         <td>
-                                            <form method="post" action="{{route('categoryPolicy.delete')}}">
+                                            <form method="post" action="{{route('policy.categories.delete')}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input type="hidden" name="cat_id" value="{{$item->id}}">
+                                                <input type="hidden" name="policy_category_id" value="{{$item->id}}">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <a type="button" href="{{route('categoryPolicy.edit',[$item->id])}}">
+                                            <a type="button" href="{{route('policy.categories.edit',[$item->id])}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit table-cancel"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                             </a>
                                         </td>
