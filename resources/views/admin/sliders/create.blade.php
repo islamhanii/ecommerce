@@ -38,6 +38,20 @@
                     </div>
 
                     <div class="form-group mb-4">
+                        <select class="form-control  basic @error('position') is-invalid fparsley-error parsley-error @enderror" name="position">
+                            <option value="Choose SizeUnit">Choose Position</option>
+                            <option value="left">Left</option>
+                            <option value="center">Center</option>
+                            <option value="right">Right</option>
+                        </select>
+                        @error('position')
+                        <span class="invalid-feedback text-danger" role="alert">
+                          <p>{{ $message }}</p>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-4">
                         <label class="control-label">Slider Link:</label>
                         <input type="text" name="link" class="form-control @error('link') is-invalid fparsley-error parsley-error @enderror" placeholder="Slider Link" value="{{old('link')}}">
                         @error('link')

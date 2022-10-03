@@ -56,6 +56,7 @@
                                         <th class="text-center">Image</th>
                                         <th>Title</th>
                                         <th>Slug</th>
+                                        <th>Postion</th>
                                         <th>Link</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -72,6 +73,7 @@
                                         </td>
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->slug}}</td>
+                                        <td>{{ucfirst($item->position)}}</td>
                                         <td>{{$item->link}}</td>
 
                                         <td class="text-center">

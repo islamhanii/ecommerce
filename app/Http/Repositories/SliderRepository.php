@@ -38,6 +38,7 @@ class SliderRepository implements SliderInterface {
             'image' => $path,
             'title' => $request->title,
             'slug'  => $request->slug,
+            'position' => $request->position,
             'link'  => $request->link
         ]);
 
@@ -62,6 +63,7 @@ class SliderRepository implements SliderInterface {
             'image' => $path,
             'title' => $request->title,
             'slug'  => $request->slug,
+            'position' => $request->position,
             'link'  => $request->link
         ]);
 
