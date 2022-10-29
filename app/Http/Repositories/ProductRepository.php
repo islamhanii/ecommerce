@@ -14,7 +14,6 @@ use App\Models\Product;
 use App\Models\ProductName;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductRepository implements ProductInterface {
@@ -80,6 +79,10 @@ class ProductRepository implements ProductInterface {
     public function edit($productId) {
         $product = $this->getProductById($productId, 'product_names');
         $subcategories = $this->getSubCategories();
+        foreach($product->product_names as $productName) {
+            $name = 'name_' . $productName->language->name;
+            $product->$name = $productName->name;
+        }
         
         return view('admin.products.edit', compact('subcategories', 'product'));
     }
@@ -100,9 +103,10 @@ class ProductRepository implements ProductInterface {
 
         foreach($languages as $language) {
             $value = 'name_' . $language->name;
-            $this->productNameModel->update([
-                'product_id' => $product->id,
-                'language_id' => $language->id,
+            $this->productNameModel->where([
+                ['product_id', $product->id],
+                ['language_id', $language->id]
+            ])->first()->update([
                 'name' => $request->$value
             ]);
         }

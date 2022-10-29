@@ -21,7 +21,7 @@
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <div class="form-group mb-4">
                         <label class="control-label">Name EN:</label>
-                        <input type="text" name="name_en" class="form-control @error('name_en') is-invalid fparsley-error parsley-error @enderror" placeholder="English Name" value="{{$product->product_names[0]->name}}">
+                        <input type="text" name="name_en" class="form-control @error('name_en') is-invalid fparsley-error parsley-error @enderror" placeholder="English Name" value="{{$product->name_en}}">
                         @error('name_en')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label class="control-label">Name AR:</label>
-                        <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid fparsley-error parsley-error @enderror" placeholder="Arabic Name" value="{{$product->product_names[1]->name}}">
+                        <input type="text" name="name_ar" class="form-control @error('name_ar') is-invalid fparsley-error parsley-error @enderror" placeholder="Arabic Name" value="{{$product->name_ar}}">
                         @error('name_ar')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>

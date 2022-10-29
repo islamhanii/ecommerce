@@ -9,6 +9,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\EndUser\HomeController;
+use App\Http\Controllers\EndUser\ProductController as EndUserProductController;
 use App\Http\Controllers\PolicyCategoryController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductDetailsController;
@@ -46,6 +47,8 @@ Route::post('/login-page',[AuthController::class,'login'])->name('login');
 */
 
 Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/products/{subCategoryId}/{language}', [EndUserProductController::class, 'subCategoryProducts'])->name('sub_category.products');
+Route::get('/product/details/{productId}/{lang}',[EndUserProductController::class, 'productDetail'])->name('product.details');
 
 /* 
 * ------------------------------------------------------------------------------------------------

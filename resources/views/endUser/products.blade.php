@@ -247,8 +247,8 @@
                                     <div class="tred-pro">
                                         <div class="tr-pro-img">
                                             <a href="product.html">
-                                                <img class="img-fluid" src="{{asset('storage/'.$product['main_image'])}}" alt="pro-img1">
-                                                <img class="img-fluid additional-image" src="{{asset('storage/'.$product['main_image'])}}" alt="additional image">
+                                                <img class="img-fluid" src="{{asset('uploads/'.$product->main_image)}}" alt="pro-img1">
+                                                <img class="img-fluid additional-image" src="{{asset('uploads/'.$product->main_image)}}" alt="additional image">
                                             </a>
                                         </div>
                                         <div class="Pro-lable">

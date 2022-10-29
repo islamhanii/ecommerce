@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 class Product extends Model
 {
@@ -23,15 +24,35 @@ class Product extends Model
         ];
     }
 
+    /*-------------------------------------Relations-----------------------------------*/
+
     public function sub_category() {
         return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
     
     public function product_names() {
-        return $this->hasMany(ProductName::class, 'product_id', 'id');
+        return $this->hasMany(ProductName::class, 'product_id', 'id')->with('language');
     }
 
     public function product_details() {
         return $this->hasMany(ProductDetail::class, 'product_id', 'id');
+    }
+
+    /*-------------------------------------Attributes-----------------------------------*/
+
+    public function getNameAttribute() {
+        $path = Request::path();
+        $pathData = explode('/', $path);
+        $languageName = array_pop($pathData);
+        $language = Language::select('id')->where('name', $languageName)->first();
+        
+        $productName = null;
+        if($language) {
+            $productName = ProductName::select('name')->where([
+                                                                ['product_id', $this->id],
+                                                                ['language_id', $language->id]
+                                                              ])->first();
+        }
+        return ($productName)?$productName->name:'Unknown';
     }
 }

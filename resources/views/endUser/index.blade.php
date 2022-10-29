@@ -11,24 +11,17 @@
             <div class="row">
                 <div class="col">
                     <div class="home-offer-banner">
-                        <div class="o-t-banner">
-                            <a href="product.html" class="image-b">
-                                <img class="img-fluid" src="{{asset('assetsEndUser/image/banner-1.jpg')}}" alt="banner image">
-                            </a>
-                            <div class="o-t-content">
-                                <h6>Fresh fruits, vagetable on our product</h6>
-                                <a href="product.html" class="btn btn-style1">Shop now</a>
+                        @foreach ($advertisements as $advertisement)
+                            <div class="o-t-banner">
+                                <a href="{{$advertisement->link}}" class="image-b">
+                                    <img class="img-fluid" src="{{asset('uploads/'. $advertisement->image)}}" alt="banner image">
+                                </a>
+                                <div class="o-t-content">
+                                    <h6>{{$advertisement->title}}</h6>
+                                    <a href="{{$advertisement->link}}" class="btn btn-style1">Shop now</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="o-t-banner">
-                            <a href="product.html" class="image-b">
-                                <img class="img-fluid" src="{{asset('assetsEndUser/image/banner-2.jpg')}}" alt="banner image">
-                            </a>
-                            <div class="o-t-content banner-color">
-                                <h6>Vagetable eggplant 100% fresh food</h6>
-                                <a href="product.html" class="btn btn-style1">Shop now</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -44,105 +37,19 @@
                         <h2>Shop by category</h2>
                     </div>
                     <div class="home-category owl-carousel owl-theme">
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat1.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Fresh fruits</span>
-                                    </a>
+                        @foreach ($subCategories as $subCategory)
+                            <div class="items">
+                                <div class="h-cate">
+                                    <div class="c-img">
+                                        <a href="{{route('sub_category.products',[$subCategory->id, 'en'])}}" class="home-cate-img">
+                                            <img class="img-fluid" src="{{asset('uploads/' . $subCategory->image)}}" alt="cate-image">
+                                            <span class="cat-title">{{$subCategory->name}}</span>
+                                        </a>
+                                    </div>
+                                    <span class="cat-num">{{$subCategory->products_count}} Items</span>
                                 </div>
-                                <span class="cat-num">19 Items</span>
                             </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat2.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Dairy & chesse</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat3.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Sea & fish</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat4.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Organic dryfruit</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat5.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Green seafood</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat6.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Organic juice</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat7.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Summer fruit</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat8.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Fresh vegetable</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="h-cate">
-                                <div class="c-img">
-                                    <a href="grid-list.html" class="home-cate-img">
-                                        <img class="img-fluid" src="{{asset('assetsEndUser/image/category-image/home-1/cat9.jpg')}}" alt="cate-image">
-                                        <span class="cat-title">Fresh meat</span>
-                                    </a>
-                                </div>
-                                <span class="cat-num">19 Items</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -108,6 +108,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Interfaces\PolicyInterface::class,
             \App\Http\Repositories\PolicyRepository::class
         );
+
+        /*-------------------------------------EndUser Product-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\EndUser\ProductInterface::class,
+            \App\Http\Repositories\EndUser\ProductRepository::class
+        );
     }
 
     /**
