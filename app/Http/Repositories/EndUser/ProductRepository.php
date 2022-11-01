@@ -18,12 +18,13 @@ class ProductRepository implements ProductInterface {
 
     /*-------------------------------------Show Category's Product-----------------------------------*/
     public function subCategoryProducts($subCategoryId, $language) {
-        $products = $this->getProductsBySubCategoryId($subCategoryId)->append(['name']);
+        $products = $this->getProductsBySubCategoryId($subCategoryId)->append('name');
         return view('endUser.products', compact('products'));
     }
 
     /*-------------------------------------Show Product Details-----------------------------------*/
-    public function productDetails($productId) {
-        
+    public function productDetails($productId, $language) {
+        $product = $this->getProductById($productId)->append('name', 'sizes');
+        return view('endUser.productDetails', compact('product'));
     }
 }

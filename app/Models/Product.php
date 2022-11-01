@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 
 class Product extends Model
@@ -38,7 +39,7 @@ class Product extends Model
         return $this->hasMany(ProductDetail::class, 'product_id', 'id');
     }
 
-    /*-------------------------------------Attributes-----------------------------------*/
+    /*-------------------------------------Name Attribute-----------------------------------*/
 
     public function getNameAttribute() {
         $path = Request::path();
@@ -54,5 +55,17 @@ class Product extends Model
                                                               ])->first();
         }
         return ($productName)?$productName->name:'Unknown';
+    }
+
+    /*-------------------------------------Sizes Attribute-----------------------------------*/
+
+    public function getSizesAttribute() {
+        $sizes = DB::table('product_details')->where('product_id', $this->id)
+        ->join('sizes', 'sizes.id', '=', 'product_details.size_id')
+        ->join('size_units', 'sizes.size_unit_id', '=', 'size_units.id')
+        ->select('sizes.id', 'sizes.size_unit_id', 'size', 'unit')
+        ->groupBy('sizes.id', 'sizes.size_unit_id', 'size', 'unit')
+        ->get();
+        return $sizes;
     }
 }

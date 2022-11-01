@@ -48,7 +48,15 @@ Route::post('/login-page',[AuthController::class,'login'])->name('login');
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/products/{subCategoryId}/{language}', [EndUserProductController::class, 'subCategoryProducts'])->name('sub_category.products');
-Route::get('/product/details/{productId}/{lang}',[EndUserProductController::class, 'productDetail'])->name('product.details');
+Route::get('/product/details/{productId}/{language}',[EndUserProductController::class, 'productDetails'])->name('product.details');
+
+Route::group(['prefix' => 'user' , 'middleware' => ['auth']], function(){
+    Route::group(['prefix' => 'wishlist', 'as' => 'wishlist.'], function(){
+        Route::get('/{lang}', [WishListController::class, 'index'])->name('index');
+        Route::post('/store', [WishListController::class, 'store'])->name('store');
+        Route::delete('/delete/{id}', [WishListController::class, 'destroy'])->name('delete');
+    });
+});
 
 /* 
 * ------------------------------------------------------------------------------------------------

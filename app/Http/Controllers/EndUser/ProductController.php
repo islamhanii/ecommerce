@@ -16,4 +16,8 @@ class ProductController extends Controller
     public function subCategoryProducts($subCategoryId, $language) {
         return $this->productInterface->subCategoryProducts($subCategoryId, $language);
     }
+
+    public function productDetails($productId, $language) {
+        return $this->productInterface->productDetails($productId, $language);
+    }
 }

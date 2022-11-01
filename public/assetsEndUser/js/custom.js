@@ -1661,11 +1661,15 @@ jQuery(function ($) {
   $('.minus-btn,.minus-btn-1').on('click', function(e) {
     e.preventDefault();
     var $this = $(this);
-    var $input = $this.closest('div').find('input');
+    var $input = $this.closest('div').find('#value');
+    var $stock = parseInt($this.closest('div').find('#stock').val(), 10);
 
     var value = parseInt($input.val(),10);
 
-    if (value > 1) {
+    if($stock === 0) {
+        value = 0;
+    }
+    else if (value > 1) {
       value = value - 1;
     } else {
       value = 1;
@@ -1677,18 +1681,14 @@ jQuery(function ($) {
     e.preventDefault();
     var $this = $(this);
     var $input = $this.closest('div').find('#value');
-    console.log($input);
-    var $stock = $this.closest('div').find('#stock').val();
+    var $stock = parseInt($this.closest('div').find('#stock').val(), 10);
 
-    console.log($stock);
-      var value = parseInt($input.val(),10);
+    var value = parseInt($input.val(),10);
 
     if (value < $stock) {
         value = value + 1;
-        console.log('yes');
-        console.log(value);
     } else {
-      $input =$stock;
+      value =$stock;
     }
     $input.val(value);
   });

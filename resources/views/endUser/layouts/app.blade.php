@@ -175,6 +175,7 @@
 <!-- back to top end -->
 <div class="mm-fullscreen-bg"></div>
 @include('endUser.layouts.footer-script')
+@yield('additional-scripts')
 </body>
 <!-- Mirrored from spacingtech.com/html/vegist-final/vegist/index1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Oct 2021 13:54:05 GMT -->
 </html>

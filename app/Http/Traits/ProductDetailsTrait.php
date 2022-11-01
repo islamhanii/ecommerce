@@ -10,4 +10,11 @@ trait ProductDetailsTrait {
     private function getProductDetailsById($productDetailsId) {
         return $this->productDetailsModel->findOrFail($productDetailsId);
     }
+
+    private function getSizeProductDetailsByProductId($productId, $sizeId) {
+        return $this->productDetailsModel->where([
+                ['product_id', $productId],
+                ['size_id', $sizeId]
+        ])->get();
+    }
 }

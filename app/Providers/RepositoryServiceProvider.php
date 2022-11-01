@@ -109,10 +109,20 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Repositories\PolicyRepository::class
         );
 
-        /*-------------------------------------EndUser Product-----------------------------------*/
+        /*-------------------------------------Bind EndUser Product-----------------------------------*/
         $this->app->bind(
             \App\Http\Interfaces\EndUser\ProductInterface::class,
             \App\Http\Repositories\EndUser\ProductRepository::class
+        );
+
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------------*/
+
+        /*-------------------------------------Bind Api Product Details-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\Api\ApiProductDetailsInterface::class,
+            \App\Http\Repositories\Api\ApiProductDetailsRepository::class
         );
     }
 
