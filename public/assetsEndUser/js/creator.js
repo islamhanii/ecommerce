@@ -1,3 +1,4 @@
+var dataCollection = {};
 var data = "";
 
 class Creator {
@@ -31,6 +32,16 @@ class Creator {
             newElement.appendChild(document.createElement('span'));
             this.colorsBox.appendChild(newElement);
         });
+    }
+
+    errorGenerator() {
+        let newElement = document.createElement('span');
+        newElement.style.color = '#f55';
+        newElement.innerHTML = 'This size not longer available.';
+        this.manageStock();
+
+        this.colorsBox.innerHTML = "";
+        this.colorsBox.appendChild(newElement);
     }
 
     run() {

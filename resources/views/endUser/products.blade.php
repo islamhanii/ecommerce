@@ -246,7 +246,7 @@
                                 <li class="grid-items">
                                     <div class="tred-pro">
                                         <div class="tr-pro-img">
-                                            <a href="product.html">
+                                            <a href="{{route('product.details', [$product->id, 'en'])}}">
                                                 <img class="img-fluid" src="{{asset('uploads/'.$product->main_image)}}" alt="pro-img1">
                                                 <img class="img-fluid additional-image" src="{{asset('uploads/'.$product->main_image)}}" alt="additional image">
                                             </a>
@@ -254,13 +254,9 @@
                                         <div class="Pro-lable">
                                             <span class="p-text">New</span>
                                         </div>
-                                        <div class="pro-icn">
-                                            <a href="wishlist.html" class="w-c-q-icn"><i class="fa fa-heart"></i></a>
-                                            <a href="{{route('product.details', [$product->id, 'en'])}}" class="w-c-q-icn"><i class="fa fa-shopping-bag"></i></a>
-                                        </div>
                                     </div>
                                     <div class="caption">
-                                        <h3><a href="product.html">{{$product->name}}</a></h3>
+                                        <h3><a href="{{route('product.details', [$product->id, 'en'])}}">{{$product->name}}</a></h3>
                                         <div class="pro-price">
                                             <span class="new-price">{{$product->price}} EGP</span>
                                         </div>

@@ -1,9 +1,9 @@
 var productId = document.getElementById('product_id').value;
 var loaderObj = new Loader();
 
-function eventer(url = "") {
+function eventer(url = "", size_id) {
     if(url !== "") {
-        loaderObj.dataLoader(url);
+        loaderObj.dataLoader(url, size_id);
     }
 }
 
@@ -20,7 +20,7 @@ function getSizeColors(sizeId = null) {
         new Creator().manageStock();
     }
     else {
-        eventer("http://127.0.0.1:8000/api/products/" + productId + "/sizes/" + sizeId + "/product-details/");
+        eventer("http://127.0.0.1:8000/api/products/" + productId + "/sizes/" + sizeId + "/product-details/", sizeId);
     }
 }
 

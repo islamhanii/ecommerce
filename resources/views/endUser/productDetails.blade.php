@@ -636,11 +636,11 @@
                             </select>
                         </div>
                         <div class="plus-minus">
-                                    <span>
-                                        <a href="javascript:void(0)" class="minus-btn text-black">-</a>
-                                        <input type="text" name="name" value="1">
-                                        <a href="javascript:void(0)" class="plus-btn text-black">+</a>
-                                    </span>
+                            <span>
+                                <a href="javascript:void(0)" class="minus-btn text-black">-</a>
+                                <input type="text" name="name" value="1">
+                                <a href="javascript:void(0)" class="plus-btn text-black">+</a>
+                            </span>
                             <a href="cart.html" class="quick-cart"><i class="fa fa-shopping-bag"></i></a>
                             <a href="wishlist.html" class="quick-wishlist"><i class="fa fa-heart"></i></a>
                         </div>
