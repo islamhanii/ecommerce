@@ -8,8 +8,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\EndUser\AuthController as EndUserAuthController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\ProductController as EndUserProductController;
+use App\Http\Controllers\EndUser\WishListController;
 use App\Http\Controllers\PolicyCategoryController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductDetailsController;
@@ -37,8 +39,17 @@ use Illuminate\Support\Facades\Route;
 * ------------------------------------------------------------------------------------------------
 */
 
+#------------------------------------Admin Authentication---------------------------------------#
 Route::get('/login-page',[AuthController::class,'index'])->name('loginPage');
 Route::post('/login-page',[AuthController::class,'login'])->name('login');
+
+#------------------------------------Admin Authentication---------------------------------------#
+Route::group(['prefix' => 'user'], function(){
+    Route::get('/login-page', [EndUserAuthController::class, 'index'])->name('user.loginPage');
+    Route::post('/login-page', [EndUserAuthController::class, 'login'])->name('user.login');
+    Route::get('/register-page', [EndUserAuthController::class, 'registerPage'])->name('user.registerPage');
+    Route::post('/register-page', [EndUserAuthController::class, 'register'])->name('user.register');
+});
 
 /* 
 * ------------------------------------------------------------------------------------------------
@@ -51,10 +62,12 @@ Route::get('/products/{subCategoryId}/{language}', [EndUserProductController::cl
 Route::get('/product/details/{productId}/{language}',[EndUserProductController::class, 'productDetails'])->name('product.details');
 
 Route::group(['prefix' => 'user' , 'middleware' => ['auth']], function(){
+    Route::post('/logout',[EndUserAuthController::class,'logout'])->name('user.logout');
+    
     Route::group(['prefix' => 'wishlist', 'as' => 'wishlist.'], function(){
         Route::get('/{lang}', [WishListController::class, 'index'])->name('index');
         Route::post('/store', [WishListController::class, 'store'])->name('store');
-        Route::delete('/delete/{id}', [WishListController::class, 'destroy'])->name('delete');
+        Route::delete('/delete/{id}', [WishListController::class, 'delete'])->name('delete');
     });
 });
 

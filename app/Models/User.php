@@ -38,8 +38,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userRoles()
-    {
-        return $this->hasMany(UserRole::class);
+    /*-------------------------------------Rules-----------------------------------*/
+    public static function rules() {
+        return [
+            'email' => 'required|email:filter',
+            'password' => 'required|string|min:8'
+        ];
+    }
+    public static function additionalRules() {
+        return [
+            'name' => 'required|string|min:3|max:255',
+            'phone' => 'required|string|min:8|max:50',
+            'city' => 'required|string|min:3|max:50',
+            'address' => 'required|string|min:15|max:500',
+            'password' => 'required|string|min:8|max:32|confirmed'
+        ];
+    }
+
+    /*-------------------------------------Relations-----------------------------------*/
+    public function userRoles() {
+        return $this->hasMany(UserRole::class, 'user_id', 'id');
+    }
+
+    public function addresses() {
+        return $this->hasMany(Address::class, 'user_id', 'id');
+    }
+
+    public function wish_lists() {
+        return $this->hasMany(WishList::class, 'user_id', 'id');
     }
 }

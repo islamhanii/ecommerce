@@ -19,7 +19,13 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Repositories\AuthRepository::class
         );
 
-        /*-------------------------------------Bind Home-----------------------------------*/
+        /*-------------------------------------Bind User Authentication-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\EndUser\AuthInterface::class,
+            \App\Http\Repositories\EndUser\AuthRepository::class
+        );
+
+        /*-------------------------------------Bind EndUser Home-----------------------------------*/
         $this->app->bind(
             \App\Http\Interfaces\EndUser\HomeInterface::class,
             \App\Http\Repositories\EndUser\HomeRepository::class
@@ -113,6 +119,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Http\Interfaces\EndUser\ProductInterface::class,
             \App\Http\Repositories\EndUser\ProductRepository::class
+        );
+
+        /*-------------------------------------Bind EndUser Wishlist-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\EndUser\WishListInterface::class,
+            \App\Http\Repositories\EndUser\WishListRepository::class
         );
 
         /*------------------------------------------------------------------------------------------------------------------*/

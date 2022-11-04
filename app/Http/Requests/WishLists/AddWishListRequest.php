@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\WishLists;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthRequest extends FormRequest
+class AddWishListRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email:filter',
-            'password' => 'required|min:8'
+            'user_id' => 'required|exists:users,id',
+            'product_details_id' => 'required|exists:product_details,id'
         ];
     }
 }

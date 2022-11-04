@@ -35,8 +35,16 @@
                                         <div class="user-info">
                                             <span class="acc-title">Account</span>
                                             <div class="account-login">
-                                                <a href="register.html">Register</a>
-                                                <a href="login.html">Log in</a>
+                                                @guest
+                                                <a href="{{route('user.registerPage')}}">Register</a>
+                                                <a href="{{route('user.loginPage')}}">Log in</a>    
+                                                @endguest
+                                                @auth
+                                                <form method="POST" action="{{route('user.logout')}}">
+                                                    @csrf
+                                                    <button type="submit" style="all:unset; color:#f55; cursor:pointer; font-size:11px;">Log out</button>
+                                                </form>    
+                                                @endauth
                                             </div>
                                         </div>
                                     </div>

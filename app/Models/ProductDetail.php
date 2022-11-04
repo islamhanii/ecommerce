@@ -32,4 +32,9 @@ class ProductDetail extends Model
     public function color() {
         return $this->belongsTo(Color::class, 'color_id', 'id');
     }
+
+    public function wish_lists()
+    {
+        return $this->hasMany(WishList::class, 'product_details_id', 'id');
+    }
 }
