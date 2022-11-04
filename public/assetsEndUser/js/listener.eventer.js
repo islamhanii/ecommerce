@@ -7,13 +7,20 @@ function eventer(url = "", size_id) {
     }
 }
 
+function getId(id) {
+    let items = document.getElementById(id);
+    let item = items.getElementsByClassName('active')[0];
+    if(item !== undefined) {
+        let itemId = item.getAttribute('aria-valuenow');
+        return itemId;
+    }
+
+    return null;
+}
+
 function getSizeColors(sizeId = null) {
     if(sizeId === null) {
-        let sizes = document.getElementById('product-sizes');
-        let size = sizes.getElementsByClassName('active')[0];
-        if(size !== undefined) {
-            sizeId = size.getAttribute('aria-valuenow');
-        }
+        sizeId = getId('product-sizes');
     }
 
     if(sizeId === null) {

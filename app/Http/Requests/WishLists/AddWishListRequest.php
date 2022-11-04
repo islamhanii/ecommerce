@@ -24,8 +24,9 @@ class AddWishListRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
-            'product_details_id' => 'required|exists:product_details,id'
+            'product_id' => 'required|exists:products,id',
+            'size_id' => 'required|exists:sizes,id',
+            'color_id' => 'required|exists:colors,id'
         ];
     }
 }

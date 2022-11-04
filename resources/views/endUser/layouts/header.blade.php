@@ -55,9 +55,9 @@
                                     </div>
                                 </li>
                                 <li class="side-wrap wishlist-wrap">
-                                    <a href="wishlist.html" class="header-wishlist">
+                                    <a href="{{route('wishlist.index', ['en'])}}" class="header-wishlist">
                                         <span class="wishlist-icon"><i class="icon-heart"></i></span>
-                                        <span class="wishlist-counter">0</span>
+                                        <span class="wishlist-counter">{{count(auth()->user()->wish_lists)}}</span>
                                     </a>
                                 </li>
                                 <li class="side-wrap cart-wrap">

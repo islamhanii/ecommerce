@@ -3,12 +3,12 @@
 namespace App\Http\Traits;
 
 trait WishListTrait {
-    private function getWishLists()
+    private function getWishLists($with=[])
     {
-        return $this->wishListModel->where('user_id', auth()->user()->id)->get();
+        return $this->wishListModel->where('user_id', auth()->user()->id)->with($with)->get();
     }
     
-    private function getWishListFromWishList($wishListId)
+    private function getWishListById($wishListId)
     {
         return $this->wishListModel->findOrFail($wishListId);
     }

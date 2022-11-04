@@ -61,7 +61,6 @@
                         </div>
                         <p>{!!$product->description!!}</p>
 
-                        <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
                         <div class="pro-items">
                             <span class="pro-size">Size:</span>
                             <ul class="pro-wight" id="product-sizes">
@@ -90,7 +89,14 @@
                             </div>
                         </div>
                         <div class="pro-btn">
-                            <button  class="btn btn-style1"><i class="fa fa-heart"></i></button>
+                            <form action="" method="post" style="display:none" id="product-form">
+                                @csrf
+                                <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
+                                <input type="hidden" name="size_id" id="form-size-id">
+                                <input type="hidden" name="color_id" id="form-color-id">
+                                <input type="hidden" name="quantity" id="form-quantity">
+                            </form>
+                            <button  class="btn btn-style1" aria-valuenow="{{route('wishlist.store')}}" onclick="submitForm(this)"><i class="fa fa-heart"></i></button>
                             <a href="cart.html" class="btn btn-style1"><i class="fa fa-shopping-bag"></i> Add to cart</a>
                             <a href="checkout-1.html" class="btn btn-style1">Buy now</a>
                         </div>
@@ -657,4 +663,5 @@
 <script src="{{asset('assetsEndUser/js/creator.js')}}"></script>
 <script src="{{asset('assetsEndUser/js/loader.js')}}"></script>
 <script src="{{asset('assetsEndUser/js/listener.eventer.js')}}"></script>
+<script src="{{asset('assetsEndUser/js/form.js')}}"></script>
 @endsection

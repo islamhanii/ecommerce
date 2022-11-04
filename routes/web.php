@@ -67,7 +67,7 @@ Route::group(['prefix' => 'user' , 'middleware' => ['auth']], function(){
     Route::group(['prefix' => 'wishlist', 'as' => 'wishlist.'], function(){
         Route::get('/{lang}', [WishListController::class, 'index'])->name('index');
         Route::post('/store', [WishListController::class, 'store'])->name('store');
-        Route::delete('/delete/{id}', [WishListController::class, 'delete'])->name('delete');
+        Route::delete('/delete', [WishListController::class, 'delete'])->name('delete');
     });
 });
 
