@@ -39,7 +39,7 @@
                                             @foreach($colors as $item)
                                                 <tr>
                                                     <td>{{$item->name}}</td>
-                                                    <td bgcolor="{{$item->hexa}}"></td>
+                                                    <td style="background-color:#{{$item->hexa}};"></td>
 
                                                     <td>
                                                         <form method="post" action="{{route('colors.delete')}}">

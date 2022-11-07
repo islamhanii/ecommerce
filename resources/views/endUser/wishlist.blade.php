@@ -24,7 +24,7 @@
                                     <li class="profile-li"><a href="order-history.html"><span>Orders</span> <span class="pro-count">5</span></a></li>
                                     <li class="profile-li"><a href="profile.html">Profile</a></li>
                                     <li class="profile-li"><a href="pro-addresses.html">Address</a></li>
-                                    <li class="profile-li"><a href="{{route('wishlist.index', ['en'])}}" class="{{ Request::is('*wishlist*')?'active':''}}"><span>Wishlist</span> <span class="pro-count">{{count($wishlists)}}</span></a></li>
+                                    <li class="profile-li"><a href="{{route('wishlist.index', ['en'])}}" class="{{Request::is('*wishlist*')?'active':''}}"><span>Wishlist</span> <span class="pro-count">{{count($wishlists)}}</span></a></li>
                                     <li class="profile-li"><a href="pro-tickets.html"><span>My tickets</span> <span class="pro-count">4</span></a></li>
                                 </ul>
                             </div>
@@ -45,7 +45,7 @@
                                                 <div class="pro-details">
                                                     <h4><a href="{{route('product.details', [$wishlist->product_details->product->id, 'en'])}}">{{$wishlist->product_details->product->name}}</a></h4>
                                                     <span class="all-size">Size: <span class="pro-size">{{$wishlist->product_details->size->size}} {{$wishlist->product_details->size->size_unit->unit}}</span></span>
-                                                    <a style="background-color:{{$wishlist->product_details->color->hexa}}; width:50px; height:50px;"></a>
+                                                    <a style="background-color:#{{$wishlist->product_details->color->hexa}}; width:50px; height:50px;"></a>
                                                 </div>
                                             </div>
                                             <div class="qty-item">

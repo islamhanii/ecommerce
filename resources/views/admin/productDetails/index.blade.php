@@ -74,7 +74,7 @@
                                                 <td class="text-center">
                                                     <span><img src="{{asset('uploads/'.$productDetail->image)}}" class="rounded-circle profile-img" alt="avatar"></span>
                                                 </td>
-                                                <td class="text-center" bgcolor="{{$productDetail->color->hexa}}">{{$productDetail->color->name}} ({{$productDetail->color->hexa}})</td>
+                                                <td class="text-center" style="background-color:#{{$productDetail->color->hexa}};">{{$productDetail->color->name}} ({{$productDetail->color->hexa}})</td>
                                                 <td class="text-center">{{$productDetail->size->size}} {{$productDetail->size->size_unit->unit}}</td>
                                                 <td class="text-center">
                                                     <ul class="table-controls">

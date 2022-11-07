@@ -34,7 +34,7 @@ class ColorRepository implements ColorInterface {
     public function store($request) {
         $this->colorModel->create([
             'name' => $request->name,
-            'hexa' => $request->hexa
+            'hexa' => str_replace('#', '', $request->hexa)
         ]);
 
         session()->flash('success', 'Color created successfully');
@@ -54,7 +54,7 @@ class ColorRepository implements ColorInterface {
 
         $color->update([
             'name' => $request->name,
-            'hexa' => $request->hexa
+            'hexa' => str_replace('#', '', $request->hexa)
         ]);
 
         session()->flash('success', 'Color updated successfully');

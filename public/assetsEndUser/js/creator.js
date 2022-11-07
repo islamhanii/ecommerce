@@ -22,7 +22,7 @@ class Creator {
         this.colorsBox.innerHTML = "";
         data.forEach((product) => {
             let newElement = document.createElement('a');
-            newElement.style.backgroundColor = product.color.hexa;
+            newElement.style.backgroundColor = "#" + product.color.hexa;
             newElement.ariaValueNow = product.color.id;
             newElement.setAttribute('onclick', 'colorsToggle(this)');
             if(product.color.id == color_id) {

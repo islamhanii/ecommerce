@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label class="control-label">Hexa Code:</label>
-                        <input type="color" name="hexa" class="form-control @error('hexa') is-invalid fparsley-error parsley-error @enderror" placeholder="Color Hexa Code" value="{{old('hexa')?old('hexa'):$color->hexa}}">
+                        <input type="color" name="hexa" class="form-control @error('hexa') is-invalid fparsley-error parsley-error @enderror" placeholder="Color Hexa Code" value="{{old('hexa')?old('hexa'):'#'.$color->hexa}}">
                         @error('hexa')
                         <span class="invalid-feedback text-danger" role="alert">
                           <p>{{ $message }}</p>
