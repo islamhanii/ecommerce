@@ -127,6 +127,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Repositories\EndUser\WishListRepository::class
         );
 
+        /*-------------------------------------Bind EndUser Cart-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\EndUser\CartInterface::class,
+            \App\Http\Repositories\EndUser\CartRepository::class
+        );
+
         /*------------------------------------------------------------------------------------------------------------------*/
         /*------------------------------------------------------------------------------------------------------------------*/
         /*------------------------------------------------------------------------------------------------------------------*/

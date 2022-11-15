@@ -97,7 +97,7 @@
                                 <input type="hidden" name="quantity" id="form-quantity">
                             </form>
                             <button  class="btn btn-style1" aria-valuenow="{{route('wishlist.store')}}" onclick="submitForm(this)"><i class="fa fa-heart"></i></button>
-                            <a href="cart.html" class="btn btn-style1"><i class="fa fa-shopping-bag"></i> Add to cart</a>
+                            <button  class="btn btn-style1" aria-valuenow="{{route('cart.store')}}" onclick="submitForm(this)"><i class="fa fa-shopping-bag"></i> Add to cart</button>
                             <a href="checkout-1.html" class="btn btn-style1">Buy now</a>
                         </div>
                         <div class="share">

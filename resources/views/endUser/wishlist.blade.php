@@ -48,10 +48,6 @@
                                                     <a style="background-color:#{{$wishlist->product_details->color->hexa}}; width:50px; height:50px;"></a>
                                                 </div>
                                             </div>
-                                            <div class="qty-item">
-                                                <a href="cart.html" class="add-wishlist">Add to cart</a>
-                                                <a href="checkout-1.html" class="add-wishlist">Buy now</a>
-                                            </div>
                                             <div class="all-pro-price">
                                                 <span class="new-price">{{$wishlist->product_details->product->price}} EGP</span>
                                                 <span class="old-price"><del>$405.00 USD</del></span>

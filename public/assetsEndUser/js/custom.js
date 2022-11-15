@@ -30,28 +30,6 @@ $(".mm-fullscreen-bg").on('click', function(){
 $('#myModal1').modal('show');
 
 /*==============================================================
-// cart js
-==============================================================*/
-
-$(".shopping-cart a.cart-count").on('click', function(){
-    $(".mini-cart").addClass("show");
-    $(".mm-fullscreen-bg").addClass("active");
-    $("body").addClass("hidden");
-});
-
-$(".shopping-cart-close").on('click', function(){
-    $(".mini-cart").removeClass("show");
-    $(".mm-fullscreen-bg").removeClass("active");
-    $("body").removeClass("hidden");
-});
-
-$(".mm-fullscreen-bg").on('click', function(){
-    $(".mini-cart").removeClass("show");
-    $(".mm-fullscreen-bg").removeClass("active");
-    $("body").removeClass("hidden");
-});
-
-/*==============================================================
 // header sticky
 ==============================================================*/
   $(window).scroll(function() {
@@ -1661,8 +1639,8 @@ jQuery(function ($) {
   $('.minus-btn,.minus-btn-1').on('click', function(e) {
     e.preventDefault();
     var $this = $(this);
-    var $input = $this.closest('div').find('#value');
-    var $stock = parseInt($this.closest('div').find('#stock').val(), 10);
+    var $input = $this.next();
+    var $stock = parseInt($input.next().val(), 10);
 
     var value = parseInt($input.val(),10);
 
@@ -1675,14 +1653,16 @@ jQuery(function ($) {
       value = 1;
     }
     $input.val(value);
+    $input.trigger("change");
   });
 
   $('.plus-btn,.plus-btn-1').on('click', function(e) {
     e.preventDefault();
     var $this = $(this);
-    var $input = $this.closest('div').find('#value');
-    var $stock = parseInt($this.closest('div').find('#stock').val(), 10);
+    var $stock = $this.prev();
+    var $input = $stock.prev();
 
+    var $stock = parseInt($stock.val(), 10);
     var value = parseInt($input.val(),10);
 
     if (value < $stock) {
@@ -1691,6 +1671,7 @@ jQuery(function ($) {
       value =$stock;
     }
     $input.val(value);
+    $input.trigger("change");
   });
 
 // **************************************** product page ********************************************

@@ -37,4 +37,9 @@ class ProductDetail extends Model
     {
         return $this->hasMany(WishList::class, 'product_details_id', 'id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'product_details_id', 'id');
+    }
 }

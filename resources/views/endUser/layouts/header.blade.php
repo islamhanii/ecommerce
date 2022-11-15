@@ -63,11 +63,11 @@
                                 <li class="side-wrap cart-wrap">
                                     <div class="shopping-widget">
                                         <div class="shopping-cart">
-                                            <a href="javascript:void(0)" class="cart-count">
-                                                        <span class="cart-icon-wrap">
-                                                            <span class="cart-icon"><i class="icon-handbag"></i></span>
-                                                            <span id="cart-total" class="bigcounter">5</span>
-                                                        </span>
+                                            <a href="{{route('cart.index', ['en'])}}" class="cart-count">
+                                                <span class="cart-icon-wrap">
+                                                    <span class="cart-icon"><i class="icon-handbag"></i></span>
+                                                    <span id="cart-total" class="bigcounter">{{auth()->user()?count(auth()->user()->carts):0}}</span>
+                                                </span>
                                             </a>
                                         </div>
                                     </div>
@@ -621,107 +621,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="mini-cart">
-        <a href="javascript:void(0)" class="shopping-cart-close"><i class="ion-close-round"></i></a>
-        <div class="cart-item-title">
-            <p>
-                <span class="cart-count-desc">There are</span>
-                <span class="cart-count-item bigcounter">4</span>
-                <span class="cart-count-desc">Products</span>
-            </p>
-        </div>
-        <ul class="cart-item-loop">
-            <li class="cart-item">
-                <div class="cart-img">
-                    <a href="product.html">
-                        <img src="{{asset('assetsEndUser/image/cart-img.jpg')}}" alt="cart-image" class="img-fluid">
-                    </a>
-                </div>
-                <div class="cart-title">
-                    <h6><a href="product.html">Fresh apple 5kg</a></h6>
-                    <div class="cart-pro-info">
-                        <div class="cart-qty-price">
-                            <span class="quantity">1 x </span>
-                            <span class="price-box">$250.00 USD</span>
-                        </div>
-                        <div class="delete-item-cart">
-                            <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-item">
-                <div class="cart-img">
-                    <a href="product.html">
-                        <img src="{{asset('assetsEndUser/image/cart-img02.jpg')}}" alt="cart-image" class="img-fluid">
-                    </a>
-                </div>
-                <div class="cart-title">
-                    <h6><a href="product.html">Natural grassbean 4kg</a></h6>
-                    <div class="cart-pro-info">
-                        <div class="cart-qty-price">
-                            <span class="quantity">1 x </span>
-                            <span class="price-box">$300.00 USD</span>
-                        </div>
-                        <div class="delete-item-cart">
-                            <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-item">
-                <div class="cart-img">
-                    <a href="product.html">
-                        <img src="{{asset('assetsEndUser/image/cart-img03.jpg')}}" alt="cart-image" class="img-fluid">
-                    </a>
-                </div>
-                <div class="cart-title">
-                    <h6><a href="product.html">Organic coconut juice 5ltr</a></h6>
-                    <div class="cart-pro-info">
-                        <div class="cart-qty-price">
-                            <span class="quantity">1 x </span>
-                            <span class="price-box">$250.00 USD</span>
-                        </div>
-                        <div class="delete-item-cart">
-                            <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="cart-item">
-                <div class="cart-img">
-                    <a href="product.html">
-                        <img src="image/cart-img04.jpg" alt="cart-image" class="img-fluid">
-                    </a>
-                </div>
-                <div class="cart-title">
-                    <h6><a href="product.html">Orange juice 5ltr</a></h6>
-                    <div class="cart-pro-info">
-                        <div class="cart-qty-price">
-                            <span class="quantity">1 x </span>
-                            <span class="price-box">$350.00 USD</span>
-                        </div>
-                        <div class="delete-item-cart">
-                            <a href="empty-cart.html"><i class="icon-trash icons"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <ul class="subtotal-title-area">
-            <li class="subtotal-info">
-                <div class="subtotal-titles">
-                    <h6>Sub total:</h6>
-                    <span class="subtotal-price">$750.00 USD</span>
-                </div>
-            </li>
-            <li class="mini-cart-btns">
-                <div class="cart-btns">
-                    <a href="cart.html" class="btn btn-style2">View cart</a>
-                    <a href="checkout-1.html" class="btn btn-style2">checkout</a>
-                </div>
-            </li>
-        </ul>
     </div>
 </header>

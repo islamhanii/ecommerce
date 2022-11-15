@@ -2725,7 +2725,8 @@ a.scroll:hover span{
     justify-content: center;
     border-radius: 100%;
 }
-.cart-area .cart-details .cart-all-pro .qty-item .center a.pro-remove{
+.cart-area .cart-details .cart-all-pro .qty-item .center a.pro-remove,
+.cart-area .cart-details .cart-all-pro .qty-item .center button.pro-remove{
     color: #f5ab1e;
     margin-top: 15px;
     text-decoration: underline;
