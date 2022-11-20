@@ -58,7 +58,7 @@ Route::group(['prefix' => 'user'], function() {
 * ------------------------------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/home/{language}', [HomeController::class,'index'])->name('home');
 Route::get('/products/{subCategoryId}/{language}', [EndUserProductController::class, 'subCategoryProducts'])->name('sub_category.products');
 Route::get('/product/details/{productId}/{language}',[EndUserProductController::class, 'productDetails'])->name('product.details');
 

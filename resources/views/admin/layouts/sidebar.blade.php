@@ -29,7 +29,7 @@
                         <a href="{{route('admin.index')}}"> Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{route('home')}}"> Store live </a>
+                        <a href="{{route('home', ['en'])}}"> Store live </a>
                     </li>
                 </ul>
             </li>

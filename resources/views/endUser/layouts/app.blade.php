@@ -152,13 +152,13 @@
                     <!-- popup content area start -->
                     <div class="pop-up-newsletter" style="background-image: url(image/news-popup.jpg);">
                         <div class="logo-content">
-                            <a href="{{route('home')}}"><img src="{{asset('assetsEndUser/image/logo1.png')}}" alt="image" class="img-fluid"></a>
+                            <a href="{{route('home', ['en'])}}"><img src="{{asset('assetsEndUser/image/logo1.png')}}" alt="image" class="img-fluid"></a>
                             <h4>Become a subscriber</h4>
                             <span>Subscribe to get the notification of latest posts</span>
                         </div>
                         <div class="subscribe-area">
                             <input type="text" name="comment" placeholder="Your email address">
-                            <a href="{{route('home')}}" class="btn btn-style1">Subscribe</a>
+                            <a href="{{route('home', 'en')}}" class="btn btn-style1">Subscribe</a>
                         </div>
                     </div>
                     <!-- popup content area end -->

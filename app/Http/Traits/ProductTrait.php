@@ -15,6 +15,10 @@ trait ProductTrait {
         return $this->productModel->with($with)->findOrFail($productId);
     }
 
+    private function getProductsInRandom($limit) {
+        return $this->productModel->inRandomOrder()->limit($limit)->get();
+    }
+
     private function getProductByCode($productCode) {
         return $this->productModel->where('code', $productCode)->first();
     }

@@ -6,7 +6,7 @@
                     <div class="header-main">
                         <!-- logo start -->
                         <div class="header-element logo">
-                            <a href="{{route('home')}}">
+                            <a href="{{route('home', ['en'])}}">
                                 <img src="{{asset('assetsEndUser/image/logo1.png')}}" alt="logo-image" class="img-fluid">
                             </a>
                         </div>

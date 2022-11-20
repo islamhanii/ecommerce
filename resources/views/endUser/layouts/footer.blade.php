@@ -26,7 +26,7 @@
                 <div class="f-logo">
                     <ul class="footer-ul">
                         <li class="footer-li footer-logo">
-                            <a href="{{route('home')}}">
+                            <a href="{{route('home', ['en'])}}">
                                 <img class="img-fluid" src="{{asset('assetsEndUser/image/logo1.png')}}" alt="">
                             </a>
                         </li>
