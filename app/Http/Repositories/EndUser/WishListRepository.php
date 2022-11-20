@@ -33,10 +33,21 @@ class WishListRepository implements WishListInterface {
     /*-------------------------------------Add to WishList-----------------------------------*/
     public function store($request) {
         $productDetails = $this->getProductDetailsByAll($request->product_id, $request->size_id, $request->color_id);
-        $this->wishListModel->create([
-            'user_id' => auth()->user()->id,
-            'product_details_id' => $productDetails->id
+        if(!$productDetails) {
+            abort(404);
+        }
+
+        $wishlist = $this->getWishListWhere([
+            ['product_details_id', $productDetails->id],
+            ['user_id', auth()->user()->id]
         ]);
+
+        if(!$wishlist) {
+            $this->wishListModel->create([
+                'user_id' => auth()->user()->id,
+                'product_details_id' => $productDetails->id
+            ]);
+        }
 
         session()->flash('success', 'Product added to the wishlist successfully.');
         return redirect()->back();

@@ -25,11 +25,23 @@ class CartRepository implements CartInterface {
 
     /*-------------------------------------Add Cart-----------------------------------*/
     public function addToCart($request) {
-        $this->cartModel->create([
-            'user_id' => auth()->user()->id,
-            'product_details_id' => request('product_details_id'),
-            'count' => $request->quantity
+        $cart = $this->getCartWhere([
+            ['product_details_id', request('product_details_id')],
+            ['user_id', auth()->user()->id]
         ]);
+
+        if($cart) {
+            $cart->update([
+                'count' => $request->quantity
+            ]);
+        }
+        else {
+            $this->cartModel->create([
+                'user_id' => auth()->user()->id,
+                'product_details_id' => request('product_details_id'),
+                'count' => $request->quantity
+            ]);
+        }
 
         session('sucess', 'Product added to the cart successfully');
         return redirect()->back();

@@ -12,4 +12,9 @@ trait WishListTrait {
     {
         return $this->wishListModel->findOrFail($wishListId);
     }
+    
+    private function getWishListWhere($where=[])
+    {
+        return $this->wishListModel->where($where)->first();
+    }
 }

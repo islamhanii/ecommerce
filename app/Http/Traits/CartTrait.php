@@ -10,4 +10,8 @@ trait CartTrait {
     private function getCartById($cartId, $with = []) {
         return $this->cartModel->with($with)->findOrFail($cartId);
     }
+    
+    private function getCartWhere($where=[]) {
+        return $this->cartModel->where($where)->first();
+    }
 }
