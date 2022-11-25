@@ -25,6 +25,6 @@ class AuthRepository implements AuthInterface {
     public function logout() {
         session()->flush();
         auth()->logout();
-        return redirect(route('home'));
+        return redirect(route('home', ['en']));
     }
 }

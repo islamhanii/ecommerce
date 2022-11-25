@@ -33,7 +33,7 @@ class AuthRepository implements AuthInterface {
     public function login($request) {
         $credentials = $request->only('email', 'password');
         if(auth()->attempt($credentials)) {
-            return redirect(route('home'));
+            return redirect(route('home', ['en']));
         }
         
         session()->flash('error', 'Invalid email or password.');
@@ -46,46 +46,41 @@ class AuthRepository implements AuthInterface {
     }
 
     public function register($request) {
-        $roleId = $this->checkUserType($request->email, 'user');
-
-        if($roleId === 'user') {
-            session()->flash('error', 'You already have an account.');
-            return redirect(route('user.registerPage'));
-        }
-
         $user = $this->getUserByEmail($request->email);
-        $default_address = 0;
+
         if(!$user) {
-            $default_address = 1;
             $user = $this->userModel->create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password)
             ]);
+
+            $roleId = $this->getRoleByType('user')->id;
+            $this->userRoleModel->create([
+                'user_id' => $user->id,
+                'role_id' => $roleId
+            ]);
+
+            $this->addressModel->create([
+                'user_id' => $user->id,
+                'city' => $request->city,
+                'details' => $request->address,
+                'is_default' => 1
+            ]);
+
+            session()->flash('success', 'User account created successfully');
+            return redirect(route('user.loginPage'));
         }
-
-        $roleId = $this->getRoleByType('user')->id;
-        $this->userRoleModel->create([
-            'user_id' => $user->id,
-            'role_id' => $roleId
-        ]);
-
-        $this->addressModel->create([
-            'user_id' => $user->id,
-            'city' => $request->city,
-            'details' => $request->address,
-            'is_default' => $default_address
-        ]);
-
-        session()->flash('success', 'User account created successfully');
-        return redirect(route('user.loginPage'));
+        
+        session()->flash('error', 'You already have an account.');
+        return redirect(route('user.registerPage'));
     }
 
     /*-------------------------------------User Logout-----------------------------------*/
     public function logout() {
         session()->flush();
         auth()->logout();
-        return redirect(route('home'));
+        return redirect(route('home', ['en']));
     }
 }
