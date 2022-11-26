@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Validation\Rule;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,7 @@ class User extends Authenticatable
             'password' => 'required|string|min:8'
         ];
     }
+    
     public static function additionalRules() {
         return [
             'name' => 'required|string|min:3|max:255',
@@ -52,6 +54,21 @@ class User extends Authenticatable
             'city' => 'required|string|min:3|max:50',
             'address' => 'required|string|min:15|max:500',
             'password' => 'required|string|min:8|max:32|confirmed'
+        ];
+    }
+
+    public static function updateProfile() {
+        return [
+            'email' => [
+                'required',
+                'email:filter',
+                Rule::unique('users')->where(function ($query) {
+                    return $query->where('id', '!=', auth()->user()->id);
+                }),
+            ],
+            'name' => 'required|string|min:3|max:255',
+            'phone' => 'required|string|min:8|max:50',
+            'password' => 'nullable|string|min:8|max:32|confirmed'
         ];
     }
 

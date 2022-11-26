@@ -28,7 +28,7 @@
                                 <li class="side-wrap user-wrap">
                                     <div class="acc-desk">
                                         <div class="user-icon">
-                                            <a href="account.html" class="user-icon-desk">
+                                            <a href="{{route('profile.index')}}" class="user-icon-desk">
                                                 <span><i class="icon-user"></i></span>
                                             </a>
                                         </div>
@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                     <div class="acc-mob">
-                                        <a href="account.html" class="user-icon">
+                                        <a href="{{route('profile.index')}}" class="user-icon">
                                             <span><i class="icon-user"></i></span>
                                         </a>
                                     </div>

@@ -25,6 +25,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Http\Repositories\EndUser\AuthRepository::class
         );
 
+        /*-------------------------------------Bind User Profle-----------------------------------*/
+        $this->app->bind(
+            \App\Http\Interfaces\EndUser\ProfileInterface::class,
+            \App\Http\Repositories\EndUser\ProfileRepository::class
+        );
+
         /*-------------------------------------Bind EndUser Home-----------------------------------*/
         $this->app->bind(
             \App\Http\Interfaces\EndUser\HomeInterface::class,

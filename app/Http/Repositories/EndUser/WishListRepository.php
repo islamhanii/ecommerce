@@ -23,11 +23,12 @@ class WishListRepository implements WishListInterface {
     /*-------------------------------------Get WishList-----------------------------------*/
     public function index() {
         $wishlists = $this->getWishLists(['product_details.size.size_unit:id,unit', 'product_details.color:id,hexa', 'product_details.product:id']);
+        $wishlistsCount = $wishlists->count();
         foreach($wishlists as $wishlist) {
             $wishlist->product_details->product->append('name');
         }
         
-        return view('endUser.wishlist', compact('wishlists'));
+        return view('endUser.wishlist', compact('wishlists', 'wishlistsCount'));
     }
 
     /*-------------------------------------Add to WishList-----------------------------------*/

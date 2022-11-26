@@ -12,6 +12,7 @@ use App\Http\Controllers\EndUser\AuthController as EndUserAuthController;
 use App\Http\Controllers\EndUser\CartController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\ProductController as EndUserProductController;
+use App\Http\Controllers\EndUser\ProfileController;
 use App\Http\Controllers\EndUser\WishListController;
 use App\Http\Controllers\PolicyCategoryController;
 use App\Http\Controllers\PolicyController;
@@ -65,6 +66,11 @@ Route::get('/product/details/{productId}/{language}',[EndUserProductController::
 Route::group(['prefix' => 'user' , 'middleware' => ['auth', 'isUser']], function() {
     Route::post('/logout',[EndUserAuthController::class,'logout'])->name('user.logout');
     
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function() {
+        Route::get('/', [ProfileController::class, 'index'])->name('index');
+        Route::put('/update', [ProfileController::class, 'update'])->name('update');
+    });
+
     Route::group(['prefix' => 'wishlist', 'as' => 'wishlist.'], function() {
         Route::get('/{lang}', [WishListController::class, 'index'])->name('index');
         Route::post('/store', [WishListController::class, 'store'])->name('store');
